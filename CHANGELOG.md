@@ -6,6 +6,59 @@ All notable changes to this project will be documented in this file.
 
 - Internet Detection using NetInfo
 
+## [4.0.1] - 2026-07-05
+
+### Added
+
+- Added `lodash` utilities file with custom standard helper implementations (`debounce`, `throttle`, `cloneDeep`, `isEqual`, `uniqBy`, `groupBy`, `orderBy`).
+- Added `findChangedFields` utility function to compare two objects and extract modified fields.
+
+### Changed
+
+- Updated plop screen generator template to use `MainScreenWrapper` for main screens and `AuthScreenWrapper` for auth screens.
+
+## [4.0.0] - 2026-07-01
+
+### Changed
+
+- **Upgrade to Expo SDK 57** (React Native 0.86.0, React 19.2.3).
+- Updated all `expo-*` packages to SDK 57 unified versioning (e.g. `expo-router@~57.0.2`).
+- Bumped compatible third-party native deps: `react-native-reanimated@4.5.0`, `react-native-worklets@0.10.0`, and `react-native-gesture-handler@~2.32.0`.
+- Removed the outdated `module`/`moduleResolution` (`node16`) and `jsx` overrides from `tsconfig.json` so it inherits Expo's `bundler` resolution — fixes ESM/CJS type errors on `react-native-reanimated`/`react-native-worklets` imports.
+- Pinned `@react-native/jest-preset` to `0.86.0` via `overrides` so a plain `npm install` resolves cleanly (works around `jest-expo@57`'s lagging `^0.85.0` peer range) — no `legacy-peer-deps` needed.
+
+
+## [3.0.0] - 2026-06-25
+
+### Added
+
+- **AI agent tooling** shared across Claude, Cursor, Codex, and other agents (`.claude`, `.cursor`, `.codex`, `.agents`, `.agent`):
+  - Skills for building native UI, Expo API routes, deployment, dev client, native data fetching, upgrading Expo, feature integration, and a skill-creator.
+  - Coding rules (atomic-design pattern, icon usage, React Native best practices, styles file structure, translation/i18n, and more).
+- **Slash commands** for translation (`translate`, `sync-translations`), SVG generation (`generate-svg`), and console-log cleanup (`remove-logs`).
+- **Plop `integration` generator** to scaffold RTK Query API services (`apis/services/<feature>/{index.ts,types.ts}`) and auto-register their cache tags.
+- **`Spacing` constants** (`x1`–`x14`, moderate-scaled) for consistent layout spacing.
+
+### Changed
+
+- **Major upgrade to Expo SDK 56** (React Native 0.85.3, React 19.2.3).
+- Updated all `expo-*` packages to SDK 56 unified versioning (e.g. `expo-router@~56.2.11`).
+- Bumped all third-party dependencies to versions compatible with SDK 56.
+- Upgraded TypeScript to 6.0.
+- Updated the optional Sentry integration to `@sentry/react-native@^8` (removed deprecated `sentry-expo` / webpack plugin; switched to the `@sentry/react-native/expo` config plugin and v8 tracing API).
+- Switched the template `android`/`ios` scripts to `expo run:android` / `expo run:ios` for dev-client builds.
+- Restructured the `apis` folder to co-locate each service with its types (`apis/services/<feature>/{index.ts,types.ts}`).
+- Improved the `generate-svg` script with dynamic color support, path property injection, and more robust icon-registry updates.
+
+### Fixed
+
+- Corrected a wrong import in the common `dropdown` organism.
+- Fixed the `Image` component loading state so the loader shows until the image actually loads (initial `isLoading = true`, using `onLoad` instead of `onLoadStart`/`onLoadEnd`).
+
+### Removed
+
+- Dropped the unmaintained `react-native-status-bar-height` dependency in favor of `Constants.statusBarHeight` from `expo-constants`.
+
 ## [2.0.2] - 2025-11-09
 
 ### Added

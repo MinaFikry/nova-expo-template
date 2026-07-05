@@ -20,6 +20,14 @@ module.exports = function (plop) {
     }).replace(/\s+/g, '');
   });
 
+  // Helper to check equality
+  plop.setHelper('eq', function (a, b, options) {
+    if (a === b) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
+
   // Helper to convert to kebab-case
   plop.setHelper('kebabCase', function (text) {
     return text
@@ -46,7 +54,7 @@ module.exports = function (plop) {
         type: 'list',
         name: 'type',
         message: 'What would you like to create?',
-        choices: ['component', 'screen', 'hook', 'util', 'svg']
+        choices: ['component', 'screen', 'hook', 'util', 'svg', 'integration']
       },
       // Component type selection
       {
@@ -84,12 +92,12 @@ module.exports = function (plop) {
 
       if (data.type === 'component') {
         let componentPath = 'components/{{componentType}}';
-        
+
         // Handle scoped components
         if (data.componentScope) {
           componentPath += '/{{componentScope}}';
         }
-        
+
         componentPath += '/{{pascalCase name}}';
 
         actions.push({
@@ -105,7 +113,7 @@ module.exports = function (plop) {
         });
 
       } else if (data.type === 'screen') {
-        const screenPath = data.screenType === 'auth' 
+        const screenPath = data.screenType === 'auth'
           ? 'app/(auth)/{{camelCase name}}'
           : 'app/(main)/{{camelCase name}}';
 
@@ -155,6 +163,29 @@ module.exports = function (plop) {
           path: 'components/atoms/Icon/list.ts',
           pattern: /(\s*)(\}\;)/,
           template: '$1  {{camelCase name}}: {{pascalCase name}},\n$1$2'
+        });
+      } else if (data.type === 'integration') {
+        // RTK Query API integration: services/<feature>/{index.ts,types.ts}.
+        const integrationPath = 'apis/services/{{camelCase name}}';
+
+        actions.push({
+          type: 'add',
+          path: `${integrationPath}/types.ts`,
+          templateFile: 'plop-templates/integration/types.ts.hbs',
+        });
+
+        actions.push({
+          type: 'add',
+          path: `${integrationPath}/index.ts`,
+          templateFile: 'plop-templates/integration/index.ts.hbs',
+        });
+
+        // Register the cache tags this service provides/invalidates (inserted before the closing `]`).
+        actions.push({
+          type: 'modify',
+          path: 'apis/tagTypes.ts',
+          pattern: /(\n)(\];)/,
+          template: "$1  '{{pascalCase name}}',\n  '{{pascalCase name}}s',\n$2",
         });
       }
 
