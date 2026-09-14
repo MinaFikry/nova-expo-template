@@ -23,7 +23,7 @@ const getIcon = (routeName: string, isFocused: boolean) => {
     <MaterialIcons
       name={iconName}
       size={26}
-      color={isFocused ? COLORS.light.primary : "black"}
+      color={isFocused ? COLORS.light.icon.action : "black"}
     />
   );
 };
@@ -65,7 +65,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               style={styles.tab}
             >
               {getIcon(route.name, isFocused)}
-              <Text color={isFocused ? "primary" : "text"}>{label}</Text>
+              <Text color={isFocused ? "primary" : "heading"}>{label}</Text>
             </TouchableOpacity>
           );
         })}

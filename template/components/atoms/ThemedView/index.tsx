@@ -14,10 +14,9 @@ export default function ThemedView({
   ...otherProps
 }: CustomViewProps) {
   const { i18n } = useTranslation();
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background"
-  );
+  const { theme, targetColor } = useThemeColor("Surface", "bg");
+  const backgroundColor =
+    (theme === "dark" ? darkColor : lightColor) || targetColor;
 
   return (
     <RNView

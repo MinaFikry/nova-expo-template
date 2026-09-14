@@ -18,7 +18,7 @@ export default function UnreadMessages({
   }
   return (
     <View style={[customStyle, styles.container]}>
-      <Text autoTranslate={false} type="bell" color="white">
+      <Text autoTranslate={false} size={8} color="onAction">
         {number}
       </Text>
     </View>

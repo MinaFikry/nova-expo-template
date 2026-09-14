@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   appleTempButton: {
     alignItems: "center",
-    backgroundColor: COLORS.light.black,
+    backgroundColor: COLORS.light.Surface.black,
     borderWidth: 0,
     height: 56,
     paddingVertical: 0,
@@ -66,7 +66,7 @@ export default function AppleRegistarationButton() {
     <Button
       isLoading={loading}
       variant="outlined"
-      buttonStyle={styles.appleTempButton}
+      containerStyle={styles.appleTempButton}
       onPress={() => {}}
     />
   );

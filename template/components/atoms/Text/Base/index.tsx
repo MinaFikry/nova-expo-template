@@ -1,69 +1,52 @@
 import { I18nManager, Text as RNText, TextStyle } from "react-native";
-
-import { useThemeColor } from "@/hooks/useThemeColor";
-import { COLORS } from "@/constants/Colors";
-import { CustomTextProps } from "./types";
-import styles from "./styles";
 import { useTranslation } from "react-i18next";
 
-/**
- * Text component that uses the current theme color.
- * @param props - Text component props.
- * @returns Text component.
- * @property {string} [color="text"] - Color of the text.
- * @property {string} [lightColor] - Light color of the text.
- * @property {string} [darkColor] - Dark color of the text.
- * @property {number} [size=14] - Size of the text.
- * @property {string} [type="default"] - Type of the text.
- * @example
- * <Text type="title" color="primary">Title</Text>
- * <Text type="default" color="text">Default</Text>
- * <Text type="defaultSemiBold" color="text">Default Semi Bold</Text>
- */
+import FontFamily from "@/constants/FontFamily";
+import { moderateScale } from "@/constants/Metrics";
+import { useThemeColor } from "@/hooks/useThemeColor";
+import { CustomTextProps } from "./types";
+import styles from "./styles";
 
+/**
+ * Themed text with typography variants.
+ * @example
+ * <Text variant="H1" color="primary">Title</Text>
+ * <Text variant="md">Body</Text>
+ * <Text size={18} fontFamily="font700">Custom</Text>
+ */
 export default function Text({
   style,
   size = 14,
-  weight = 400,
   lineHeight,
   isCentered,
-  fontFamily = "cosmica",
-  color = "text",
-  lightColor,
-  darkColor,
-  type,
+  fontFamily = "font400",
+  color = "heading",
+  variant,
   autoTranslate = true,
+  preventDarkModeColor = false,
   ...rest
 }: CustomTextProps) {
   const { t } = useTranslation();
-  const themedColor = useThemeColor(
-    {
-      light: lightColor
-        ? COLORS.light[lightColor as keyof typeof COLORS.light]
-        : undefined,
-      dark: darkColor
-        ? COLORS.dark[darkColor as keyof typeof COLORS.dark]
-        : undefined,
-    },
-    color
-  );
+  const { targetColor } = useThemeColor("text", color, preventDarkModeColor);
+
   const textStyle: TextStyle = {
-    color: themedColor,
-    fontSize: size,
+    color: targetColor,
+    fontSize: moderateScale(size),
     textAlign: isCentered ? "center" : undefined,
     lineHeight: lineHeight || undefined,
-    fontFamily: !type ? `${fontFamily}_${weight}` : undefined,
+    fontFamily: !variant ? FontFamily[fontFamily] : undefined,
     writingDirection: I18nManager.isRTL ? "rtl" : "ltr",
   };
 
   return (
     <RNText
       style={[
-        { ...textStyle },
-        type ? styles?.[type] : undefined,
+        textStyle,
+        variant ? styles[variant] : undefined,
         styles.text,
         style,
       ]}
+      allowFontScaling={false}
       {...rest}
     >
       {autoTranslate ? t(String(rest.children)) : rest.children}

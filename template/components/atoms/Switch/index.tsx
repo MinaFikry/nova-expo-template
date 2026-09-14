@@ -27,7 +27,7 @@ export default function Switch({
   style,
   ...otherProps
 }: SwitchProps): React.JSX.Element {
-  const textColor = useThemeColor({}, "text");
+  const { targetColor: textColor } = useThemeColor("text", "heading");
 
   const switchComponent = (
     <AnimatedSwitch

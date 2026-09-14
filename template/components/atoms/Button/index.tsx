@@ -1,97 +1,71 @@
-import {
-  ActivityIndicator,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from "react-native";
+import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 
-import GLOBAL_STYLES from "@/constants/GlobalStyles";
-import { COLORS } from "@/constants/Colors";
-import getShadowStyle from "@/utils/getShadowStyle";
-import { ButtonProps } from "./types";
 import Text from "@/components/atoms/Text/Base";
-import styles from "./styles";
+import { COLORS } from "@/constants/Colors";
+import GLOBAL_STYLES from "@/constants/GlobalStyles";
 import { theme } from "@/utils/getTheme";
+import { SIZE_CONFIG, VARIANT_CONFIG } from "./ButtonEnums";
+import { ButtonProps } from "./types";
+import styles from "./styles";
 
+/**
+ * Button driven by `variant` (look) and `size` (height + text preset).
+ * @example
+ * <Button title="Login" onPress={onLogin} />
+ * <Button title="Cancel" variant="outlined" size="md" onPress={onCancel} />
+ * <Button title="Delete" variant="destructive" isLoading={isDeleting} onPress={onDelete} />
+ */
 export default function Button({
   title,
+  size = "lg",
   onPress,
-  color,
-  backgroundColor = COLORS[theme].primary,
-  borderColor,
   disabled = false,
-  btnHeight = 48,
-  buttonStyle,
-  textStyle,
-  fontSize = 16,
+  containerStyle,
   prefix,
-  icon,
   isLoading,
   suffix,
   isFullWidth = false,
-  fontFamily = "cosmica_700",
-  showShadow = false,
-  variant = "filled",
+  variant = "primary",
 }: ButtonProps) {
-  const customStyle: ViewStyle = {
-    height: btnHeight,
+  const sizeData = SIZE_CONFIG[size];
+  const variantData = VARIANT_CONFIG[variant];
+
+  const isDisabled = disabled || isLoading;
+
+  const resolvedBtnStyle = disabled
+    ? variantData.disabledBtnStyle
+    : variantData.btnStyle;
+  const textColor = disabled ? "disabled" : variantData.textColor;
+
+  const buttonCustomStyle = {
+    ...styles.button,
+    ...resolvedBtnStyle,
+    height: sizeData.height,
     flex: isFullWidth ? 1 : undefined,
-    ...buttonStyle,
+    ...containerStyle,
   };
-
-  const textExtraStyle = {
-    color:
-      variant === "filled"
-        ? color || COLORS.light.white
-        : color || COLORS.light.primary,
-    fontSize,
-    fontFamily,
-  };
-
-  const hasTitle = !!title;
 
   return (
     <TouchableOpacity
-      style={[
-        styles.button,
-        styles[variant],
-        customStyle,
-        showShadow && getShadowStyle(),
-        variant === "outlined" && {
-          borderColor: borderColor || backgroundColor,
-        },
-        variant === "underlined" && {
-          borderBottomColor: borderColor || backgroundColor,
-          alignSelf: "center",
-          height: "auto",
-        },
-      ]}
-      disabled={disabled || isLoading}
+      style={buttonCustomStyle}
+      disabled={isDisabled}
       activeOpacity={disabled ? 1 : 0.2}
       onPress={onPress}
     >
-      {!isLoading ? (
+      {isLoading ? (
+        <ActivityIndicator color={COLORS[theme].text[textColor]} size={24} />
+      ) : (
         <View style={GLOBAL_STYLES.row}>
           {prefix && <View style={styles.prefixSpacing}>{prefix}</View>}
-          {icon && <View style={styles.prefixSpacing}></View>}
 
-          {hasTitle && (
-            <Text
-              style={[
-                styles.text,
-                textExtraStyle,
-                textStyle,
-                variant === "underlined" && { lineHeight: 24 },
-              ]}
-            >
+          {!!title && (
+            <Text variant={sizeData.textVariant} color={textColor}>
               {title}
             </Text>
           )}
 
           {suffix && <View style={styles.suffixSpacing}>{suffix}</View>}
         </View>
-      ) : (
-        <ActivityIndicator color={color} size={24} />
       )}
     </TouchableOpacity>
   );

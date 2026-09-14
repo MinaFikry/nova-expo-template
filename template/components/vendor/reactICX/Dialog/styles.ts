@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: COLORS.light.primary,
+    backgroundColor: COLORS.light.Surface.action,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 8,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   deleteBtn: {
-    backgroundColor: COLORS.light.primary,
+    backgroundColor: COLORS.light.Surface.action,
   },
   cancelText: {
     color: "#666",

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 export default function Loading() {
   return (
     <View style={[GLOBAL_STYLES.row, styles.centering, GLOBAL_STYLES.fullSize]}>
-      <ActivityIndicator size="small" color={COLORS.light.primary} />
+      <ActivityIndicator size="small" color={COLORS.light.icon.action} />
     </View>
   );
 }

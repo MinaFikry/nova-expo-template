@@ -7,10 +7,6 @@ const styles = StyleSheet.create({
     borderRadius: 64,
     width: "100%",
   },
-  btnText: {
-    fontSize: 14,
-    ...GLOBAL_STYLES.font500,
-  },
   container: {
     alignItems: "center",
     flex: 1,
@@ -26,20 +22,20 @@ const styles = StyleSheet.create({
     marginVertical: 24,
   },
   outlineTxt: {
-    color: COLORS.dark.primary,
+    color: COLORS.dark.text.primary,
     fontSize: 15,
     ...GLOBAL_STYLES.font500,
     marginTop: 16,
   },
   subTitle: {
-    color: COLORS.dark.greyCe,
+    color: COLORS.dark.text.greyCe,
     fontSize: 14,
     lineHeight: 20.3,
     textAlign: "center",
     ...GLOBAL_STYLES.font400,
   },
   title: {
-    color: COLORS.dark.greyCe,
+    color: COLORS.dark.text.greyCe,
     fontSize: 20,
     ...GLOBAL_STYLES.font700,
   },

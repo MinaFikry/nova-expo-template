@@ -32,7 +32,7 @@ export default function NavigationHeader({
         <Feather
           name={"chevron-left"}
           size={32}
-          color={COLORS[colorScheme]["text"]}
+          color={COLORS[colorScheme].icon.primary}
         />
       </TouchableOpacity>
 
@@ -61,7 +61,7 @@ export default function NavigationHeader({
         style={[isRightComponentHidden && styles.hiddenStyle]}
       >
         <View style={styles.NotiNum}>
-          <UnreadMessages number={2} backgroundColor={COLORS.light.primary} />
+          <UnreadMessages number={2} backgroundColor={COLORS.light.Surface.action} />
         </View>
         <NotificationBell />
       </View>

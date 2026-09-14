@@ -4,7 +4,7 @@ import { theme } from "@/utils/getTheme";
 
 const styles = StyleSheet.create({
   line: {
-    backgroundColor: COLORS[theme].grey,
+    backgroundColor: COLORS[theme].border.grey,
     height: 1,
     width: "100%",
   },

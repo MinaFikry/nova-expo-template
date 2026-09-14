@@ -67,7 +67,7 @@ const Login = () => {
       <View style={[GLOBAL_STYLES.rowCenter, GLOBAL_STYLES.gap4]}>
         <Text>Don't have an account?</Text>
         <TouchableOpacity onPress={() => router.push("/(auth)/signup")}>
-          <Text weight={600} color="primary" style={styles.underlined}>
+          <Text fontFamily="font600" color="primary" style={styles.underlined}>
             Signup
           </Text>
         </TouchableOpacity>

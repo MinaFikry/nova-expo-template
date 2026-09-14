@@ -16,7 +16,7 @@ export default function Checkbox({
   label,
   labelPosition = "right",
 }: CheckboxProps): React.JSX.Element {
-  const textColor = useThemeColor({}, "text");
+  const { targetColor: textColor } = useThemeColor("text", "heading");
   const finalCheckmarkColor = checkmarkColor || DEFAULT_CHECKMARK_COLOR;
 
   const checkboxComponent = (

@@ -7,7 +7,7 @@ export default function NotificationBell() {
 
   return (
     <TouchableOpacity>
-      <Feather name="bell" size={32} color={COLORS[colorScheme]["text"]} />
+      <Feather name="bell" size={32} color={COLORS[colorScheme].icon.primary} />
     </TouchableOpacity>
   );
 }

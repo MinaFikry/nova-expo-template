@@ -40,7 +40,7 @@ export default function ModalWrapper({
         {!cannotDismiss && (
           <View style={[GLOBAL_STYLES.row, styles.closeSection]}>
             <TouchableOpacity onPress={hideModal}>
-              <AntDesign name="close" size={18} color={COLORS.light.black} />
+              <AntDesign name="close" size={18} color={COLORS.light.icon.black} />
             </TouchableOpacity>
           </View>
         )}

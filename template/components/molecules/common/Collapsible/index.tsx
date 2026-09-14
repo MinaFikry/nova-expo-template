@@ -24,11 +24,11 @@ export default function Collapsible({
         onPress={() => setIsOpen((value) => !value)}
         activeOpacity={0.8}
       >
-        <Text weight={600}>{title}</Text>
+        <Text fontFamily="font600">{title}</Text>
         <Ionicons
           name={isOpen ? "chevron-down" : "chevron-forward-outline"}
           size={18}
-          color={theme === "light" ? COLORS.light.icon : COLORS.dark.icon}
+          color={theme === "light" ? COLORS.light.icon.secondary : COLORS.dark.icon.secondary}
         />
       </TouchableOpacity>
       {isOpen && <View style={styles.content}>{children}</View>}

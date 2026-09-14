@@ -13,7 +13,7 @@ export default function Screen3() {
         data={cardListData}
         ListHeaderComponent={() => (
           <View style={{ gap: 8, marginBottom: 16 }}>
-            <Text size={16} weight={600} isCentered>
+            <Text size={16} fontFamily="font600" isCentered>
               FlashList Example (50 items)
             </Text>
             <SeperateLine />
@@ -24,7 +24,7 @@ export default function Screen3() {
         renderItem={({ item }) => (
           <CardWrapper>
             <View style={GLOBAL_STYLES.gap8}>
-              <Text size={20} weight={700} isCentered>
+              <Text size={20} fontFamily="font700" isCentered>
                 {item.title}
               </Text>
               <SeperateLine />

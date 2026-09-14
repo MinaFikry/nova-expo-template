@@ -2,6 +2,7 @@ import React from "react";
 import { IconComponentProps } from "./types";
 import { iconsList } from "./list";
 import { View } from "react-native";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 const Icon = ({
   name,
@@ -12,6 +13,8 @@ const Icon = ({
   rotateY,
 }: IconComponentProps) => {
   const IconComponent = iconsList[name];
+  const { targetColor } = useThemeColor("icon", color);
+
   return (
     <View
       style={{
@@ -22,7 +25,7 @@ const Icon = ({
         ],
       }}
     >
-      <IconComponent size={size || 24} color={color} />
+      <IconComponent size={size || 24} color={targetColor} />
     </View>
   );
 };

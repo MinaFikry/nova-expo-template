@@ -35,8 +35,6 @@ export default function RandomBottomSheet(
             title="Confirm"
             onPress={() => onCloseSheet(true)}
             isFullWidth
-            // buttonStyle={styles.btn}
-            textStyle={styles.btnText}
           />
 
           <Button
@@ -44,7 +42,6 @@ export default function RandomBottomSheet(
             variant="outlined"
             onPress={() => onCloseSheet()}
             isFullWidth
-            // buttonStyle={styles.btn}
           />
         </View>
       </View>

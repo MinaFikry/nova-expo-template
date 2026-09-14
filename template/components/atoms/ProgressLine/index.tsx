@@ -13,8 +13,8 @@ import { COLORS } from "@/constants/Colors";
 function ProgressLine({
   total = 100,
   progress = 10,
-  progressColor = COLORS.light.greyCe,
-  fillColor = COLORS.light.primary,
+  progressColor = COLORS.light.Surface.greyCe,
+  fillColor = COLORS.light.Surface.action,
   customHeight = 8,
 }: ProgressLineProps) {
   const controlProgressPercentage = Math.min(progress, total);

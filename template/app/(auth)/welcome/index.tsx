@@ -13,36 +13,36 @@ const Welcome = () => {
       <View style={styles.container}>
         <View style={GLOBAL_STYLES.gap16}>
           <View style={[GLOBAL_STYLES.row, GLOBAL_STYLES.gap4]}>
-            <Text size={24} weight={700}>
+            <Text size={24} fontFamily="font700">
               Welcome to
             </Text>
-            <Text size={24} weight={800} color="primary">
+            <Text size={24} fontFamily="font800" color="primary">
               NovaByte! 🌟
             </Text>
           </View>
-          <Text color="grey70" lineHeight={21}>
+          <Text color="body" lineHeight={21}>
             Your all-in-one toolkit for building beautiful, high-performance
             mobile apps. With NovaByte, you get clean, modern, and easy-to-use
             templates that help you move fast and build smarter. Let’s create
             something amazing together! ✨
           </Text>
-          <Text size={18} weight={700} lineHeight={21}>
+          <Text size={18} fontFamily="font700" lineHeight={21}>
             Why NovaByte? 💡
           </Text>
           <View style={GLOBAL_STYLES.gap16}>
-            <Text color="grey70" weight={500}>
+            <Text color="body" fontFamily="font500">
               ✅ Ready-to-Use Components
             </Text>
-            <Text color="grey70" weight={500}>
+            <Text color="body" fontFamily="font500">
               🎨 Highly Customizable
             </Text>
-            <Text color="grey70" weight={500}>
+            <Text color="body" fontFamily="font500">
               ⚡ Optimized for Speed
             </Text>
-            <Text color="grey70" weight={500}>
+            <Text color="body" fontFamily="font500">
               🛠️ Developer-Friendly
             </Text>
-            <Text color="grey70" weight={500}>
+            <Text color="body" fontFamily="font500">
               🚀 Built to Scale
             </Text>
           </View>

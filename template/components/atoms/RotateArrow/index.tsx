@@ -4,9 +4,16 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { useEffect, useCallback } from "react";
-import ICONS from "@/components/atoms/icons";
+import Icon from "../Icon";
+import { moderateScale } from "@/constants/Metrics";
+import { RotateArrowProps } from "./types";
 
-export default function RotateArrow({ isOpen }: { isOpen: boolean }) {
+export default function RotateArrow({
+  isOpen,
+  iconName = "arrowDown",
+  color = "primary",
+  size = moderateScale(12),
+}: RotateArrowProps) {
   const iconPosition = useSharedValue("0deg");
 
   const rotateArrow = useCallback(() => {
@@ -23,7 +30,7 @@ export default function RotateArrow({ isOpen }: { isOpen: boolean }) {
 
   return (
     <Animated.View style={animatedStyle}>
-      <ICONS.ArrowDown />
+      <Icon name={iconName} size={size} color={color} />
     </Animated.View>
   );
 }

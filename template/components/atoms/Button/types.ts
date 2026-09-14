@@ -1,25 +1,36 @@
 import { ReactNode } from "react";
-import { GestureResponderEvent, TextStyle, ViewStyle } from "react-native";
-import FontFamily from "@/constants/FontFamily";
+import { GestureResponderEvent, ViewStyle } from "react-native";
+import { textColorType } from "@/@types/mainTypes";
+import { TextVariant } from "@/components/atoms/Text/Base/types";
+
+export type ButtonSize = "sm" | "md" | "lg";
+export type ButtonVariant =
+  | "primary"
+  | "outlined"
+  | "ghost"
+  | "link"
+  | "destructive";
 
 export interface ButtonProps {
   title?: string;
+  size?: ButtonSize;
   onPress: (event: GestureResponderEvent) => void;
-  color?: string;
-  backgroundColor?: string;
-  borderColor?: string;
   disabled?: boolean;
-  btnHeight?: number;
-  buttonStyle?: ViewStyle;
-  textStyle?: TextStyle;
-  fontSize?: number;
-  iconSize?: number;
-  prefix?: JSX.Element;
-  icon?: ReactNode;
+  containerStyle?: ViewStyle;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
   isLoading?: boolean;
-  suffix?: JSX.Element;
   isFullWidth?: boolean;
-  fontFamily?: keyof typeof FontFamily;
-  showShadow?: boolean;
-  variant?: "filled" | "outlined" | "underlined";
+  variant?: ButtonVariant;
+}
+
+export interface SizeConfig {
+  height: number;
+  textVariant: TextVariant;
+}
+
+export interface VariantConfig {
+  btnStyle?: ViewStyle;
+  disabledBtnStyle?: ViewStyle;
+  textColor: textColorType;
 }

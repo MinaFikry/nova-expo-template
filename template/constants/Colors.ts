@@ -1,66 +1,104 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
-
-const tintColorLight = "#0a7ea4";
-const tintColorDark = "#fff";
-
 export const COLORS = {
   light: {
-    // main colors
-    primary: "#0a7ea4",
-    secondary: "#7F7F7F",
-    grey: "#DEDDE0",
-    greyCe: "#CECECE",
-    greyE5: "#E5E5E5",
-    grey70: "#707070",
-    white: "#FFFFFF",
-    black: "#000000",
-
-    // app colors
-    text: "#11181C",
-    background: "#F2F2F2",
-    tint: tintColorLight,
-    icon: "#687076",
-    border: "#C5CCD6",
-    tabIconDefault: "#687076",
-    tabIconSelected: tintColorLight,
-
-    // system message colors
-    success: "#159F91",
-    danger: "#FF193B",
-    dangerF5: "#F54135",
-    dangerBC: "#BC1823",
-    dangerFF: "#FFCDD4",
+    text: {
+      heading: "#11181C",
+      body: "#707070",
+      caption: "#7F7F7F",
+      primary: "#0a7ea4",
+      onAction: "#FFFFFF",
+      disabled: "#B5B8B8",
+      success: "#159F91",
+      danger: "#FF193B",
+      black: "#000000",
+      grey: "#DEDDE0",
+      greyCe: "#CECECE",
+      greyE5: "#E5E5E5",
+    },
+    Surface: {
+      bg: "#F2F2F2",
+      primary: "#FFFFFF",
+      action: "#0a7ea4",
+      actionDisabled: "#D3D5D5",
+      success: "#159F91",
+      danger: "#FF193B",
+      dangerHighlighted: "#FFCDD4",
+      dangerPressed: "#BC1823",
+      dangerHover: "#F54135",
+      greyCe: "#CECECE",
+      black: "#000000",
+      transparent: "transparent",
+    },
+    icon: {
+      primary: "#11181C",
+      secondary: "#687076",
+      caption: "#7F7F7F",
+      action: "#0a7ea4",
+      onAction: "#FFFFFF",
+      disabled: "#B5B8B8",
+      tabDefault: "#687076",
+      tabSelected: "#0a7ea4",
+      success: "#159F91",
+      danger: "#FF193B",
+      greyCe: "#CECECE",
+      black: "#000000",
+    },
+    border: {
+      primary: "#C5CCD6",
+      action: "#0a7ea4",
+      disabled: "#B5B8B8",
+      danger: "#FF193B",
+      grey: "#DEDDE0",
+    },
   },
   dark: {
-    // main colors
-    primary: "#0a7ea4",
-    secondary: "#7F7F7F",
-    grey: "#DEDDE0",
-    greyCe: "#CECECE",
-    greyE5: "#E5E5E5",
-    grey70: "#707070",
-    white: "#FFFFFF",
-    black: "#000000",
-
-    // app colors
-    text: "#ECEDEE",
-    background: "#151718",
-    tint: tintColorDark,
-    icon: "#9BA1A6",
-    border: "#3E4042",
-    tabIconDefault: "#9BA1A6",
-    tabIconSelected: tintColorDark,
-
-    // system message colors
-    success: "#159F91",
-    danger: "#FF193B",
-    dangerF5: "#F54135",
-    dangerBC: "#BC1823",
-    dangerFF: "#FFCDD4",
+    text: {
+      heading: "#ECEDEE",
+      body: "#707070",
+      caption: "#7F7F7F",
+      primary: "#0a7ea4",
+      onAction: "#FFFFFF",
+      disabled: "#B5B8B8",
+      success: "#159F91",
+      danger: "#FF193B",
+      black: "#000000",
+      grey: "#DEDDE0",
+      greyCe: "#CECECE",
+      greyE5: "#E5E5E5",
+    },
+    Surface: {
+      bg: "#151718",
+      primary: "#FFFFFF",
+      action: "#0a7ea4",
+      actionDisabled: "#D3D5D5",
+      success: "#159F91",
+      danger: "#FF193B",
+      dangerHighlighted: "#FFCDD4",
+      dangerPressed: "#BC1823",
+      dangerHover: "#F54135",
+      greyCe: "#CECECE",
+      black: "#000000",
+      transparent: "transparent",
+    },
+    icon: {
+      primary: "#ECEDEE",
+      secondary: "#9BA1A6",
+      caption: "#7F7F7F",
+      action: "#0a7ea4",
+      onAction: "#FFFFFF",
+      disabled: "#B5B8B8",
+      tabDefault: "#9BA1A6",
+      tabSelected: "#FFFFFF",
+      success: "#159F91",
+      danger: "#FF193B",
+      greyCe: "#CECECE",
+      black: "#000000",
+    },
+    border: {
+      primary: "#3E4042",
+      action: "#0a7ea4",
+      disabled: "#B5B8B8",
+      danger: "#FF193B",
+      grey: "#DEDDE0",
+    },
   },
 };
-
-export type colorType = keyof typeof COLORS.light;

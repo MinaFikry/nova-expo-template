@@ -12,7 +12,7 @@ export default function Screen2() {
 
   return (
     <MainScreenWrapper>
-      <Text type="title">Screen2</Text>
+      <Text variant="H1">Screen2</Text>
       <Button
         title="Go to Screen3"
         onPress={() => router.push("/(main)/screen3")}

@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.light.white,
-    shadowColor: COLORS.light.black,
+    backgroundColor: COLORS.light.Surface.primary,
+    shadowColor: COLORS.light.Surface.black,
     shadowOffset: {
       width: 0,
       height: 2,

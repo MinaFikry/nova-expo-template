@@ -8,7 +8,7 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.light.border,
+    borderBottomColor: COLORS.light.border.primary,
     // paddingTop: getStatusBarHeight(),
   },
   NotiNum: {

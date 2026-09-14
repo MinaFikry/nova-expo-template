@@ -1,40 +1,19 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "@/constants/Colors";
-import GLOBAL_STYLES from "@/constants/GlobalStyles";
-import { theme } from "@/utils/getTheme";
+import Spacing from "@/constants/Spacing";
 
 const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    borderRadius: 8,
+    borderRadius: Spacing.x8,
     flexDirection: "row",
-    height: 40,
     justifyContent: "center",
-    paddingHorizontal: 15,
+    paddingHorizontal: Spacing.x4,
   },
   prefixSpacing: {
-    marginEnd: 8,
+    marginEnd: Spacing.x2,
   },
-  smallSpaceEnd: { marginEnd: 4 },
   suffixSpacing: {
-    marginStart: 10,
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 28,
-    textAlign: "center",
-    ...GLOBAL_STYLES.font700,
-  },
-  filled: {
-    backgroundColor: COLORS[theme].primary,
-  },
-  outlined: {
-    backgroundColor: "transparent",
-    borderWidth: 1,
-  },
-  underlined: {
-    backgroundColor: "transparent",
-    borderBottomWidth: 1,
+    marginStart: Spacing.x2,
   },
 });
 

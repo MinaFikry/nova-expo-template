@@ -10,23 +10,23 @@ import { theme } from "@/utils/getTheme";
 
 const styles = StyleSheet.create({
   errorTextColor: {
-    color: COLORS[theme].danger,
+    color: COLORS[theme].text.danger,
   },
   errorToast: {
-    borderStartColor: COLORS[theme].danger,
+    borderStartColor: COLORS[theme].border.danger,
     height: 80,
   },
   msgStyle: {
     ...GLOBAL_STYLES.font500,
-    color: COLORS[theme].grey,
+    color: COLORS[theme].text.grey,
     fontSize: 14,
     writingDirection: I18nManager.isRTL ? "rtl" : "ltr",
   },
   successTextColor: {
-    color: COLORS[theme].success,
+    color: COLORS[theme].text.success,
   },
   successToast: {
-    borderStartColor: COLORS[theme].success,
+    borderStartColor: COLORS[theme].Surface.success,
     height: 80,
   },
   titleStyle: {

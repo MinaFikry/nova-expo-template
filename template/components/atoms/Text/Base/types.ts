@@ -1,16 +1,27 @@
-import { COLORS } from "@/constants/Colors";
+import { textColorType } from "@/@types/mainTypes";
+import FontFamily from "@/constants/FontFamily";
 import { TextProps } from "react-native";
+
+export type TextVariant =
+  | "H0"
+  | "H1"
+  | "H2"
+  | "H3"
+  | "H4"
+  | "lg"
+  | "md"
+  | "sm"
+  | "xsm";
+
+export type TextColor = textColorType;
 
 export type CustomTextProps = TextProps & {
   size?: number;
-  weight?: 400 | 500 | 600 | 700 | 800;
   lineHeight?: number;
   isCentered?: boolean;
-  // Add more options if there're multiple fonts
-  fontFamily?: "cosmica";
-  color?: keyof typeof COLORS.light & keyof typeof COLORS.dark;
-  lightColor?: keyof typeof COLORS.light;
-  darkColor?: keyof typeof COLORS.dark;
-  type?: "title" | "subtitle" | "link" | "bell";
+  fontFamily?: keyof typeof FontFamily;
+  color?: TextColor;
   autoTranslate?: boolean;
+  variant?: TextVariant;
+  preventDarkModeColor?: boolean;
 };

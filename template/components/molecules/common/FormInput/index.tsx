@@ -1,29 +1,16 @@
-import { Input } from "@/components/atoms";
-import { InputFieldProps } from "@/components/atoms/Input/types";
-import {
-  Controller,
-  Control,
-  FieldError,
-  FieldErrorsImpl,
-  Merge,
-} from "react-hook-form";
+import { Controller, FieldValues } from "react-hook-form";
+import Input from "../Input";
+import { ControllableInputProps } from "./types";
+import { getErrorText } from "./utils";
 
-interface ControllableInputProps extends InputFieldProps {
-  control: Control;
-  name: string;
-  required?: boolean;
-  errorMessage?: string | FieldError | Merge<FieldError, FieldErrorsImpl>;
-  rules?: object;
-}
-
-export default function ControllableInput({
+export default function ControllableInput<T extends FieldValues>({
   control,
   name,
   rules,
   required,
   errorMessage,
   ...otherProps
-}: ControllableInputProps) {
+}: ControllableInputProps<T>) {
   return (
     <Controller
       control={control}
@@ -34,8 +21,7 @@ export default function ControllableInput({
           onChangeText={onChange}
           onBlur={onBlur}
           value={value}
-          // @ts-ignore
-          error={errorMessage || fieldState.error?.message}
+          error={getErrorText(errorMessage, fieldState.error?.message)}
           {...otherProps}
         />
       )}

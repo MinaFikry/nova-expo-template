@@ -9,9 +9,11 @@ import { useGoogleLoginMutation } from "@/apis/services/auth";
 import showSuccessMsg from "@/utils/showSuccessMsg";
 import loginHandler from "@/utils/loginHandler";
 import Img from "@/components/atoms/Image";
-import { COLORS } from "@/constants/Colors";
 
 const styles = StyleSheet.create({
+  button: {
+    height: 52,
+  },
   icon: {
     borderRadius: 30 / 2,
     height: 30,
@@ -69,11 +71,8 @@ export default function GoogleRegisterationButton() {
       variant="outlined"
       onPress={googleRegisteration}
       isLoading={isGoogleLoginLoading}
-      borderColor={COLORS.light.black}
-      backgroundColor={COLORS.light.white}
       prefix={SocialLogoMarkup}
-      color={COLORS.light.black}
-      btnHeight={52}
+      containerStyle={styles.button}
     />
   );
 }

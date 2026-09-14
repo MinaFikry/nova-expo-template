@@ -9,9 +9,11 @@ import { useFacebookLoginMutation } from "@/apis/services/auth";
 import loginHandler from "@/utils/loginHandler";
 import showSuccessMsg from "@/utils/showSuccessMsg";
 import Img from "@/components/atoms/Image";
-import { COLORS } from "@/constants/Colors";
 
 const styles = StyleSheet.create({
+  button: {
+    height: 52,
+  },
   icon: {
     borderRadius: 30 / 2,
     height: 30,
@@ -63,11 +65,8 @@ export default function FacebookRegisterationButton() {
       variant="outlined"
       onPress={facebookRegister}
       isLoading={isFacebookLoginLoading}
-      borderColor={COLORS.light.black}
-      color={COLORS.light.black}
-      backgroundColor={COLORS.light.white}
       prefix={SocialLogoMarkup}
-      btnHeight={52}
+      containerStyle={styles.button}
     />
   );
 }

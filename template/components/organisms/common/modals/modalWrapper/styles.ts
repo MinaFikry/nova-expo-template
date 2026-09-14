@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   closeSection: { justifyContent: "flex-end" },
   modalContainer: {
-    backgroundColor: COLORS.light.white,
+    backgroundColor: COLORS.light.Surface.primary,
     borderRadius: 30,
     padding: 20,
   },

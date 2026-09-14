@@ -47,7 +47,7 @@ const Home = () => {
       <View>
         <Button
           title={"Underlined Button"}
-          variant="underlined"
+          variant="link"
           onPress={() => {}}
         />
       </View>

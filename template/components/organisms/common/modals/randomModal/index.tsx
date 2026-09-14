@@ -21,7 +21,7 @@ export default function RandomModal({
     <ModalWrapper isVisible={isVisible} setVisible={setVisible}>
       <View>
         <View style={[GLOBAL_STYLES.vhCentering, GLOBAL_STYLES.gap8]}>
-          <Text color="black" size={18} weight={700}>
+          <Text color="black" size={18} fontFamily="font700">
             Random Modal
           </Text>
           <Text>

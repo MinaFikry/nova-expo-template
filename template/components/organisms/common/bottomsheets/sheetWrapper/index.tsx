@@ -36,7 +36,7 @@ function SheetWrapper({
           <View style={styles.headerTitleContainer}>
             <Text
               size={20}
-              weight={weight || 500}
+              fontFamily={`font${weight || 500}`}
               style={styles.headerTitle}
               color={color}
             >
