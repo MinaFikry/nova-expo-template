@@ -382,7 +382,8 @@ async function setupESLint(targetPath) {
   console.log("\nSetting up ESLint and Prettier...");
 
   const eslintPackages = [
-    "eslint",
+    // eslint-plugin-react, -import and -react-native don't support ESLint 10 yet
+    "eslint@^9",
     "eslint-config-expo",
     "globals",
     "prettier",
