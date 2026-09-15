@@ -95,13 +95,13 @@ expo start --no-dev --minify
 
 Here are some screenshots of the application:
 
-![Screenshot 1](screenshots/landing.jpg)
-![Screenshot 2](screenshots/login.jpg)
-![Screenshot 3](screenshots/app.jpg)
-![Screenshot 4](screenshots/modal.jpg)
-![Screenshot 5](screenshots/actionsheet.jpg)
-![Screenshot 6](screenshots/darkmode.jpg)
-![Screenshot 7](screenshots/flashlist.jpg)
+| Welcome | Login | Sign Up |
+|:---:|:---:|:---:|
+| <img src="screenshots/landing.jpg" width="200" /> | <img src="screenshots/login.jpg" width="200" /> | <img src="screenshots/signup.jpg" width="200" /> |
+
+| Home | Explore | Favorites | Profile |
+|:---:|:---:|:---:|:---:|
+| <img src="screenshots/app.jpg" width="200" /> | <img src="screenshots/explore.jpg" width="200" /> | <img src="screenshots/favourites.jpg" width="200" /> | <img src="screenshots/profile.jpg" width="200" /> |
 
 ## 🏗️ Project Structure
 

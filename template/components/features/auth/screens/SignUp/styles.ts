@@ -1,22 +1,50 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "@/constants/Colors";
-import GLOBAL_STYLES from "@/constants/GlobalStyles";
-import { moderateScale } from "@/constants/Metrics";
+import Radius from "@/constants/Radius";
+import { getShadow } from "@/constants/Shadows";
 import Spacing from "@/constants/Spacing";
 import { theme } from "@/utils/getTheme";
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: COLORS[theme].Surface.bg,
-    padding: Spacing.x6,
+    gap: Spacing.x6,
+    paddingVertical: Spacing.x4,
   },
-  title: {
-    fontSize: moderateScale(28),
-    letterSpacing: -0.5,
-    color: COLORS[theme].text.heading,
-    ...GLOBAL_STYLES.font700,
+  backButton: {
+    width: Spacing.x11,
+    height: Spacing.x11,
+    borderRadius: Radius.pill,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: COLORS[theme].border.subtle,
+    backgroundColor: COLORS[theme].Surface.primary,
+    marginBottom: Spacing.x4,
+  },
+  backIcon: {
+    transform: [{ rotate: "180deg" }],
+  },
+  header: {
+    gap: Spacing.x2,
+  },
+  formCard: {
+    gap: Spacing.x4,
+    padding: Spacing.x5,
+    borderRadius: Radius.xl,
+    borderWidth: 1,
+    borderColor: COLORS[theme].border.subtle,
+    backgroundColor: COLORS[theme].Surface.primary,
+    ...getShadow("md", theme),
+  },
+  termsRow: {
+    paddingVertical: Spacing.x1,
+  },
+  footer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: Spacing.x1,
   },
 });
+
+export default styles;

@@ -20,6 +20,7 @@ export default function Biometric() {
     <View>
       {isBiometricSupported && (
         <Button
+          variant="outlined"
           onPress={runBiometric}
           prefix={<FingerPrint />}
           title={"Biometric Login"}

@@ -12,7 +12,7 @@ interface FlashListWrapperProps<T>
   isRefreshing?: boolean;
   estimatedItemSize?: number;
   gap?: number;
-  renderItem: ({ item }: { item: T }) => JSX.Element;
+  renderItem: ({ item, index }: { item: T; index: number }) => JSX.Element;
   onEndReached?: () => void;
   onRefresh?: () => void;
   ListFooterComponent?: JSX.Element;

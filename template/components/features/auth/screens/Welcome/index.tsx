@@ -1,73 +1,77 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { useRouter } from "expo-router";
-import { Button, Text } from "@/components/shared/ui";
+import { Button, Orb, GradientSurface, Icon, Text } from "@/components/shared/ui";
+import Spacing from "@/constants/Spacing";
 import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
-import GLOBAL_STYLES from "@/constants/GlobalStyles";
+import { iconsListType } from "@/@types/mainTypes";
+import styles from "./styles";
+
+const FEATURES: { icon: iconsListType; title: string; caption: string }[] = [
+  { icon: "layers", title: "featureComponents", caption: "featureComponentsCaption" },
+  { icon: "sliders", title: "featureCustomizable", caption: "featureCustomizableCaption" },
+  { icon: "zap", title: "featureFast", caption: "featureFastCaption" },
+  { icon: "code", title: "featureDeveloper", caption: "featureDeveloperCaption" },
+];
 
 const Welcome = () => {
   const router = useRouter();
 
   return (
-    <ScreenWrapper paddingSize="sm" isScrollable>
+    <ScreenWrapper paddingSize="sm" showHeader={false} isScrollable>
       <View style={styles.container}>
-        <View style={GLOBAL_STYLES.gap16}>
-          <View style={[GLOBAL_STYLES.row, GLOBAL_STYLES.gap4]}>
-            <Text size={24} fontFamily="font700">
-              Welcome to
-            </Text>
-            <Text size={24} fontFamily="font800" color="primary">
-              NovaByte! 🌟
-            </Text>
-          </View>
-          <Text color="body" lineHeight={21}>
-            Your all-in-one toolkit for building beautiful, high-performance
-            mobile apps. With NovaByte, you get clean, modern, and easy-to-use
-            templates that help you move fast and build smarter. Let’s create
-            something amazing together! ✨
-          </Text>
-          <Text size={18} fontFamily="font700" lineHeight={21}>
-            Why NovaByte? 💡
-          </Text>
-          <View style={GLOBAL_STYLES.gap16}>
-            <Text color="body" fontFamily="font500">
-              ✅ Ready-to-Use Components
-            </Text>
-            <Text color="body" fontFamily="font500">
-              🎨 Highly Customizable
-            </Text>
-            <Text color="body" fontFamily="font500">
-              ⚡ Optimized for Speed
-            </Text>
-            <Text color="body" fontFamily="font500">
-              🛠️ Developer-Friendly
-            </Text>
-            <Text color="body" fontFamily="font500">
-              🚀 Built to Scale
+        <View>
+          <GradientSurface style={styles.hero}>
+            <Orb size={Spacing.x14 * 4} style={styles.heroOrbLarge} />
+            <Orb size={Spacing.x14 * 2} style={styles.heroOrbSmall} opacity={0.08} />
+          <View style={styles.heroBadge}>
+            <Icon name="star" size={12} color="onAction" />
+            <Text variant="xsm" color="onAction">
+              welcomeBadge
             </Text>
           </View>
+          <Text variant="H1" color="onAction">
+            welcomeHeadline
+          </Text>
+          <Text variant="md" color="onAction" style={styles.heroBody}>
+            welcomeBody
+          </Text>
+          </GradientSurface>
         </View>
-        <View style={GLOBAL_STYLES.gap16}>
+
+        <View style={styles.featuresGrid}>
+          {FEATURES.map((feature, index) => (
+            <View key={feature.title} style={styles.featureCard}>
+              <View style={styles.featureIcon}>
+                <Icon name={feature.icon} size={20} color="action" />
+              </View>
+              <View>
+                <Text size={15} fontFamily="font600" lineHeight={20}>
+                  {feature.title}
+                </Text>
+                <Text variant="xsm" color="caption">
+                  {feature.caption}
+                </Text>
+              </View>
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.actions}>
           <Button
-            title="Go to Login"
-            onPress={() => router.push("/(auth)/login")}
+            title="createAccount"
+            suffix={<Icon name="arrowRight" size={18} color="onAction" />}
+            onPress={() => router.push("/(auth)/signup")}
           />
           <Button
-            title="Go to Signup"
-            onPress={() => router.push("/(auth)/signup")}
+            title="haveAccount"
+            variant="outlined"
+            onPress={() => router.push("/(auth)/login")}
           />
         </View>
       </View>
     </ScreenWrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    paddingVertical: 16,
-  },
-});
 
 export default Welcome;

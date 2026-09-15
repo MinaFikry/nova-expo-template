@@ -11,7 +11,7 @@ function SheetWrapper({
   sheetHeight = undefined as number | undefined,
   sheetId,
   title = "",
-  color = "black",
+  color = "heading",
   weight = 500,
   isNoPadding = false,
   showSeperateLine = true,

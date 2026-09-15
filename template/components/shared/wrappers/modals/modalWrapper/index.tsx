@@ -5,6 +5,7 @@ import GLOBAL_STYLES from "@/constants/GlobalStyles";
 import { ModalWrapperProps } from "./types";
 import styles from "./styles";
 import { COLORS } from "@/constants/Colors";
+import { theme } from "@/utils/getTheme";
 
 export default function ModalWrapper({
   isVisible,
@@ -28,6 +29,7 @@ export default function ModalWrapper({
       avoidKeyboard
       isVisible={isVisible}
       onBackdropPress={hideModal}
+      onBackButtonPress={hideModal}
       onDismiss={onDismiss}
       animationIn={"zoomIn"}
       backdropColor="#000"
@@ -40,7 +42,7 @@ export default function ModalWrapper({
         {!cannotDismiss && (
           <View style={[GLOBAL_STYLES.row, styles.closeSection]}>
             <TouchableOpacity onPress={hideModal}>
-              <AntDesign name="close" size={18} color={COLORS.light.icon.black} />
+              <AntDesign name="close" size={18} color={COLORS[theme].icon.primary} />
             </TouchableOpacity>
           </View>
         )}

@@ -3,9 +3,8 @@ import { View, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
 import { Controller, useForm } from "react-hook-form";
-import { Checkbox, FormInput } from "@/components/shared/ui";
+import { Checkbox, FormInput, Icon } from "@/components/shared/ui";
 import { Button, SeperateLine, Text } from "@/components/shared/ui";
-import GLOBAL_STYLES from "@/constants/GlobalStyles";
 import GoogleRegisterationButton from "@/components/features/auth/components/social/GoogleRegisterationButton";
 import FacebookRegisterationButton from "@/components/features/auth/components/social/FacebookRegisterationButton";
 import AppleRegistarationButton from "@/components/features/auth/components/social/AppleRegistarationButton";
@@ -17,60 +16,94 @@ const Login = () => {
   const router = useRouter();
 
   return (
-    <ScreenWrapper justifyContent="space-between" isScrollable>
-      <View>
-        <View style={{ marginBottom: 24 }}>
+    <ScreenWrapper showHeader={false} paddingSize="sm" isScrollable>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.brandMark}>
+            <Icon name="zap" size={24} color="onAction" />
+          </View>
+          <Text variant="H1">loginTitle</Text>
+          <Text variant="md" color="body">
+            loginSubtitle
+          </Text>
+        </View>
+
+        <View style={styles.formCard}>
           <FormInput
             name="username"
-            placeholder="Email"
+            label="email"
+            placeholder="emailPlaceholder"
+            keyboardType="email-address"
+            prefix={<Icon name="mail" size={18} color="caption" />}
             control={control}
             required
           />
           <FormInput
             name="password"
-            placeholder="Password"
+            label="password"
+            placeholder="passwordPlaceholder"
             secureTextEntry
+            prefix={<Icon name="lock" size={18} color="caption" />}
             control={control}
             required
           />
-          <View style={GLOBAL_STYLES.rowJustifyBetween}>
+          <View style={styles.optionsRow}>
             <Controller
               control={control}
               name="remember_me"
               render={({ field: { onChange, value } }) => (
                 <Checkbox
-                  label="Remember me"
-                  onChange={onChange}
-                  value={value}
+                  label="rememberMe"
+                  labelPosition="left"
+                  size={20}
+                  checked={!!value}
+                  onPress={() => onChange(!value)}
                 />
               )}
             />
-            <TouchableOpacity onPress={() => router.push("/(auth)/forgot-password")}>
-              <Text color="black" size={12}>
-                Forgot your password?
+            <TouchableOpacity
+              onPress={() => router.push("/(auth)/forgotPassword")}
+            >
+              <Text size={13} fontFamily="font600" color="primary">
+                forgotPassword
               </Text>
             </TouchableOpacity>
           </View>
+          <Button
+            title="signIn"
+            onPress={() => router.replace("/(main)/(tabs)/Home")} // Navigate to the home page and replace the current route
+          />
+          <Biometric />
         </View>
-        <Button
-          title="Login"
-          onPress={() => router.replace("/(main)/(tabs)/Home")} // Navigate to the home page and replace the current route
-        />
-      </View>
-      <Biometric />
-      <SeperateLine />
-      <View style={GLOBAL_STYLES.gap8}>
-        <AppleRegistarationButton />
-        <GoogleRegisterationButton />
-        <FacebookRegisterationButton />
-      </View>
-      <View style={[GLOBAL_STYLES.rowCenter, GLOBAL_STYLES.gap4]}>
-        <Text>Don't have an account?</Text>
-        <TouchableOpacity onPress={() => router.push("/(auth)/signup")}>
-          <Text fontFamily="font600" color="primary" style={styles.underlined}>
-            Signup
+
+        <View style={styles.dividerRow}>
+          <View style={styles.dividerLine}>
+            <SeperateLine />
+          </View>
+          <Text variant="xsm" color="caption">
+            orContinueWith
           </Text>
-        </TouchableOpacity>
+          <View style={styles.dividerLine}>
+            <SeperateLine />
+          </View>
+        </View>
+
+        <View style={styles.socialList}>
+          <AppleRegistarationButton />
+          <GoogleRegisterationButton />
+          <FacebookRegisterationButton />
+        </View>
+
+        <View style={styles.footer}>
+          <Text variant="sm" color="body">
+            noAccount
+          </Text>
+          <TouchableOpacity onPress={() => router.push("/(auth)/signup")}>
+            <Text size={13} fontFamily="font700" color="primary">
+              signUp
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScreenWrapper>
   );

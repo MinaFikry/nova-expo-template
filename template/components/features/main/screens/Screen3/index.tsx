@@ -1,39 +1,62 @@
-import { SeperateLine, Text } from "@/components/shared/ui";
+import { Icon, Text } from "@/components/shared/ui";
 import CardWrapper from "@/components/shared/wrappers/Card";
 import FlashListWrapper from "@/components/shared/wrappers/FlashList";
-import GLOBAL_STYLES from "@/constants/GlobalStyles";
 import { cardListData } from "@/constants/ListData";
 import React from "react";
 import { View } from "react-native";
+import styles from "./styles";
 
 export default function Screen3() {
   return (
-    <View style={{ padding: 16, flex: 1 }}>
+    <View style={styles.container}>
       <FlashListWrapper
         data={cardListData}
         ListHeaderComponent={() => (
-          <View style={{ gap: 8, marginBottom: 16 }}>
-            <Text size={16} fontFamily="font600" isCentered>
+          <View style={styles.listHeader}>
+            <Text variant="H2">flashListTitle</Text>
+            <Text variant="md" color="body">
               FlashList Example (50 items)
             </Text>
-            <SeperateLine />
           </View>
         )}
         estimatedItemSize={150}
-        gap={8}
-        renderItem={({ item }) => (
-          <CardWrapper>
-            <View style={GLOBAL_STYLES.gap8}>
-              <Text size={20} fontFamily="font700" isCentered>
+        gap={12}
+        renderItem={({ item, index }) => (
+          <View>
+          <CardWrapper customStyles={styles.card}>
+            <View style={styles.cardTop}>
+              <View style={styles.indexChip}>
+                <Text
+                  size={13}
+                  fontFamily="font700"
+                  color="primary"
+                  autoTranslate={false}
+                >
+                  {String(item.id)}
+                </Text>
+              </View>
+              <Text
+                size={16}
+                fontFamily="font600"
+                style={styles.cardTitle}
+                autoTranslate={false}
+              >
                 {item.title}
               </Text>
-              <SeperateLine />
-              <Text color="greyCe">{item.description}</Text>
-              <Text size={12} color="greyE5">
-                {item.date}
+            </View>
+            <View style={styles.cardBody}>
+              <Text variant="sm" color="body" autoTranslate={false}>
+                {item.description}
               </Text>
+              <View style={styles.dateRow}>
+                <Icon name="calendar" size={14} color="caption" />
+                <Text variant="xsm" color="caption" autoTranslate={false}>
+                  {item.date}
+                </Text>
+              </View>
             </View>
           </CardWrapper>
+          </View>
         )}
       />
     </View>

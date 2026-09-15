@@ -21,7 +21,7 @@ export default function RandomBottomSheet(
   return (
     <SheetWrapper sheetId={props.sheetId} title={props.payload.title}>
       <View style={GLOBAL_STYLES.gap16}>
-        <Text>
+        <Text variant="sm" color="body">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut

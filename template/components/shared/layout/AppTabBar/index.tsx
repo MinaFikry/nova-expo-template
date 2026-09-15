@@ -1,35 +1,66 @@
-import { View, TouchableOpacity, StyleSheet } from "react-native";
-import React from "react";
-import { Text, ThemedView } from "@/components/shared/ui";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { COLORS } from "@/constants/Colors";
+import { LayoutChangeEvent, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
+import Spacing from "@/constants/Spacing";
+import { iconsListType } from "@/@types/mainTypes";
 import { Tabs } from "expo-router";
+import TabItem from "./TabItem";
+import styles, { TAB_BAR_PADDING, TAB_GAP } from "./styles";
 
 // Props that expo-router's <Tabs tabBar={...} /> passes to a custom tab bar.
 type BottomTabBarProps = Parameters<
   NonNullable<React.ComponentProps<typeof Tabs>["tabBar"]>
 >[0];
 
-// Icon mapping for routes
-const getIcon = (routeName: string, isFocused: boolean) => {
-  const icons = {
-    Home: "home",
-    Favourites: "favorite",
-    Explore: "explore",
-    Profile: "person",
-  } as const;
-  const iconName = icons[routeName as keyof typeof icons] || "home";
-  return (
-    <MaterialIcons
-      name={iconName}
-      size={26}
-      color={isFocused ? COLORS.light.icon.action : "black"}
-    />
-  );
+// Icon mapping for routes (route names are matched case-insensitively)
+const TAB_ICONS: Record<string, iconsListType> = {
+  home: "home",
+  favourites: "heart",
+  explore: "compass",
+  profile: "user",
 };
 
-// TabBar component
+const INDICATOR_TIMING = { duration: 260, easing: Easing.out(Easing.cubic) };
+
+const capitalize = (value: string) =>
+  value.charAt(0).toUpperCase() + value.slice(1);
+
+/**
+ * Floating tab bar. The active pill slides to the selected tab.
+ */
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
+  const insets = useSafeAreaInsets();
+  const [barWidth, setBarWidth] = useState(0);
+  const indicatorX = useSharedValue(0);
+
+  const tabCount = state.routes.length;
+  const tabWidth =
+    barWidth > 0
+      ? (barWidth - TAB_BAR_PADDING * 2 - TAB_GAP * (tabCount - 1)) / tabCount
+      : 0;
+
+  useEffect(() => {
+    if (!tabWidth) return;
+    indicatorX.value = withTiming(
+      TAB_BAR_PADDING + state.index * (tabWidth + TAB_GAP),
+      INDICATOR_TIMING
+    );
+  }, [state.index, tabWidth, indicatorX]);
+
+  const indicatorStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: indicatorX.value }],
+  }));
+
+  const handleLayout = (event: LayoutChangeEvent) => {
+    setBarWidth(event.nativeEvent.layout.width);
+  };
+
   const handlePress = (
     route: (typeof state.routes)[number],
     isFocused: boolean
@@ -46,8 +77,19 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   };
 
   return (
-    <ThemedView style={styles.tabbarContainer}>
-      <View style={styles.tabbar}>
+    <View
+      style={[
+        styles.tabbarContainer,
+        { bottom: Math.max(insets.bottom, Spacing.x3) },
+      ]}
+    >
+      <View style={styles.tabbar} onLayout={handleLayout}>
+        {tabWidth > 0 && (
+          <Animated.View
+            pointerEvents="none"
+            style={[styles.indicator, { width: tabWidth }, indicatorStyle]}
+          />
+        )}
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
           const label =
@@ -55,49 +97,22 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
               ? options.tabBarLabel
               : typeof options.title === "string"
               ? options.title
-              : route.name;
+              : capitalize(route.name);
           const isFocused = state.index === index;
 
           return (
-            <TouchableOpacity
+            <TabItem
               key={route.key}
+              icon={TAB_ICONS[route.name.toLowerCase()] || "home"}
+              label={label}
+              isFocused={isFocused}
               onPress={() => handlePress(route, isFocused)}
-              style={styles.tab}
-            >
-              {getIcon(route.name, isFocused)}
-              <Text color={isFocused ? "primary" : "heading"}>{label}</Text>
-            </TouchableOpacity>
+            />
           );
         })}
       </View>
-    </ThemedView>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  tabbarContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 70,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  tabbar: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    borderTopWidth: 1,
-    borderTopColor: "#ccc",
-    // backgroundColor: "#fff",
-  },
-  tab: {
-    flex: 1,
-    paddingVertical: 16,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 export default TabBar;

@@ -28,13 +28,13 @@ export default function _layout() {
         }}
       />
       <Tabs.Screen
-        name="Favourites"
+        name="favourites"
         options={{
           title: "Favorites",
         }}
       />
       <Tabs.Screen
-        name="Profile"
+        name="profile"
         options={{
           title: "Profile",
         }}

@@ -1,5 +1,5 @@
 import * as AppleAuthentication from "expo-apple-authentication";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { useAppleLoginMutation } from "@/apis/services/auth";
 import Button from "@/components/shared/ui/Button";
 import loginHandler from "@/utils/loginHandler";
@@ -26,6 +26,9 @@ export default function AppleRegistarationButton() {
     useAppleLoginMutation();
 
   const loading = isAppleLoginLoading;
+
+  // Sign in with Apple is iOS-only; the native button warns on other platforms.
+  if (Platform.OS !== "ios") return null;
 
   return !loading ? (
     <AppleAuthentication.AppleAuthenticationButton

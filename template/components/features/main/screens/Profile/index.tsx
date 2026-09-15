@@ -1,75 +1,159 @@
-import { Button, SeperateLine, Text } from "@/components/shared/ui";
-import { Collapsible } from "@/components/shared/ui";
-import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
-import i18n from "@/locale";
+import React, { Fragment } from "react";
+import { TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
-import React from "react";
-import { StyleSheet, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { Button, Collapsible, Icon, PressableScale, Text } from "@/components/shared/ui";
+import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
+import GLOBAL_STYLES from "@/constants/GlobalStyles";
+import i18n from "@/locale";
+import styles from "./styles";
+
+type Language = "en" | "ar";
+
+const PROFILE_SECTIONS = [
+  {
+    title: "Personal Information",
+    rows: ["First Name: John", "Last Name: Doe", "Age: 25"],
+  },
+  {
+    title: "contactInformation",
+    rows: ["Email: john.doe@example.com", "Phone: +20 100 000 0000"],
+  },
+  {
+    title: "address",
+    rows: ["City: Cairo", "Street: 5th Settlement", "Building: 5"],
+  },
+  {
+    title: "socialMedia",
+    rows: ["Facebook: johndoe", "Twitter: @johndoe", "Instagram: @johndoe"],
+  },
+];
+
+const LANGUAGES: { value: Language; label: string }[] = [
+  { value: "en", label: "EN" },
+  { value: "ar", label: "AR" },
+];
 
 export default function Profile() {
   const router = useRouter();
+  const { i18n: activeI18n } = useTranslation();
 
   const handleLogout = async () => {
     router.replace("/(auth)/welcome");
   };
 
-  const changeLanguage = async (lang: "en" | "ar") => {
+  const changeLanguage = async (lang: Language) => {
     try {
       await i18n.changeLanguage(lang);
     } catch (error) {
       console.error("Language change failed", error);
     }
   };
+
   return (
-    <ScreenWrapper variant="main">
-      <View style={styles.container}>
-        <Text style={styles.title}>Profile</Text>
-        <Collapsible title="Personal Information">
-          <Text>First Name: John</Text>
-          <Text>Last Name: Doe</Text>
-          <Text>Age: 25</Text>
-        </Collapsible>
-        <Collapsible title="Contact Information">
-          <Text>Email: mahmoud.s.m619@gmail.com </Text>
-          <Text>Phone: +201005541537 </Text>
-        </Collapsible>
-        <Collapsible title="Address">
-          <Text>City: Cairo</Text>
-          <Text>Street: 5th Settlement</Text>
-          <Text>Building: 5</Text>
-        </Collapsible>
-        <Collapsible title="Social Media">
-          <Text>Facebook: Mahmoud salah</Text>
-          <Text>Twitter: Mahmoud salah</Text>
-          <Text>Instagram: Mahmoud salah</Text>
-        </Collapsible>
-        <View>
-          <Button
-            title="Change Language To AR"
-            onPress={() => changeLanguage("ar")}
-          />
+    <ScreenWrapper variant="main" isScrollable style={styles.screen}>
+      <View>
+      <View style={styles.profileCard}>
+        <View style={styles.avatar}>
+          <Text size={26} fontFamily="font700" color="onAction" autoTranslate={false}>
+            JD
+          </Text>
         </View>
-        <View>
-          <Button
-            title="Change Language To EN"
-            onPress={() => changeLanguage("en")}
-          />
+        <Text variant="H3" autoTranslate={false}>
+          John Doe
+        </Text>
+        {/* Stretch + center: an auto-width centered Text clips the tail of this font on Android */}
+        <Text variant="sm" color="caption" isCentered style={styles.email} autoTranslate={false}>
+          john.doe@example.com
+        </Text>
+      </View>
+      </View>
+
+      <View style={styles.section}>
+        <Text variant="xsm" color="caption" style={styles.sectionLabel}>
+          accountLabel
+        </Text>
+        <View style={styles.listCard}>
+          {PROFILE_SECTIONS.map((section, index) => (
+            <Fragment key={section.title}>
+              {index > 0 && <View style={styles.divider} />}
+              <View style={styles.collapsibleItem}>
+                <Collapsible title={section.title}>
+                  <View style={styles.collapsibleBody}>
+                    {section.rows.map((row) => (
+                      <Text key={row} variant="sm" color="body" autoTranslate={false}>
+                        {row}
+                      </Text>
+                    ))}
+                  </View>
+                </Collapsible>
+              </View>
+            </Fragment>
+          ))}
         </View>
-        <SeperateLine />
-        <View>
-          <Button title="Logout" onPress={handleLogout} />
+      </View>
+
+      <View style={styles.section}>
+        <Text variant="xsm" color="caption" style={styles.sectionLabel}>
+          preferencesLabel
+        </Text>
+        <View style={styles.listCard}>
+          <View style={styles.settingRow}>
+            <View style={styles.settingIcon}>
+              <Icon name="globe" size={18} color="action" />
+            </View>
+            <Text size={15} fontFamily="font600" style={styles.settingText}>
+              changeLanguage
+            </Text>
+            <View style={styles.segmented}>
+              {LANGUAGES.map((language) => {
+                const isActive = activeI18n.language === language.value;
+                return (
+                  <TouchableOpacity
+                    key={language.value}
+                    style={[styles.segment, isActive && styles.segmentActive]}
+                    onPress={() => changeLanguage(language.value)}
+                  >
+                    <Text
+                      size={12}
+                      fontFamily="font700"
+                      color={isActive ? "primary" : "caption"}
+                      autoTranslate={false}
+                    >
+                      {language.label}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </View>
+          <View style={styles.divider} />
+          <PressableScale
+            style={styles.settingRow}
+            pressedScale={0.98}
+            onPress={() => router.push("/(main)/screen1")}
+          >
+            <View style={styles.settingIcon}>
+              <Icon name="moon" size={18} color="action" />
+            </View>
+            <Text size={15} fontFamily="font600" style={styles.settingText}>
+              appearance
+            </Text>
+            <View style={GLOBAL_STYLES.flipInArabic}>
+              <Icon name="chevronRight" size={18} color="caption" />
+            </View>
+          </PressableScale>
         </View>
+      </View>
+
+      <View>
+      <Button
+        title="logout"
+        variant="outlined"
+        prefix={<Icon name="logOut" size={18} color="danger" />}
+        onPress={handleLogout}
+      />
       </View>
     </ScreenWrapper>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    gap: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-});

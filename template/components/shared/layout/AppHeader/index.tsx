@@ -6,6 +6,7 @@ import { Feather } from "@expo/vector-icons";
 import { useColorScheme } from "@/hooks/useColorScheme.web";
 import { Logo, Text, ThemedView } from "@/components/shared/ui";
 import { NotificationBell, UnreadMessages } from "@/components/features/notifications";
+import GLOBAL_STYLES from "@/constants/GlobalStyles";
 import styles from "./styles";
 
 export default function NavigationHeader({
@@ -16,7 +17,7 @@ export default function NavigationHeader({
   onPress = () => {},
 }) {
   const navigation = useNavigation();
-  const colorScheme = useColorScheme() ?? "light";
+  const colorScheme = useColorScheme() === "dark" ? "dark" : "light";
 
   const isBackButtonVisible = hasBackArrow && navigation.canGoBack();
 
@@ -25,18 +26,20 @@ export default function NavigationHeader({
       {/* BACK BUTTON */}
       <TouchableOpacity
         disabled={!isBackButtonVisible}
-        style={[styles.spacing, !isBackButtonVisible && styles.hiddenStyle]}
+        style={[styles.iconButton, !isBackButtonVisible && styles.hiddenStyle]}
         onPress={navigation.goBack}
       >
-        <Feather
-          name={"chevron-left"}
-          size={32}
-          color={COLORS[colorScheme].icon.primary}
-        />
+        <View style={GLOBAL_STYLES.flipInArabic}>
+          <Feather
+            name={"chevron-left"}
+            size={22}
+            color={COLORS[colorScheme].icon.primary}
+          />
+        </View>
       </TouchableOpacity>
 
       {/* CENTER COMPONENT */}
-      <View>
+      <View style={styles.center}>
         {!!title && !hasLogo && (
           <TouchableOpacity
             onPress={() => {
@@ -44,23 +47,24 @@ export default function NavigationHeader({
               Keyboard.dismiss();
             }}
           >
-            <Text>{title}</Text>
+            <Text size={16} fontFamily="font600" numberOfLines={1}>
+              {title}
+            </Text>
           </TouchableOpacity>
         )}
-        {!!hasLogo && (
-          <View>
-            <Logo />
-          </View>
-        )}
+        {!!hasLogo && <Logo width={44} height={44} />}
       </View>
 
       {/* RIGHT COMPONENT */}
       <View
         pointerEvents={isRightComponentHidden ? "none" : undefined}
-        style={[isRightComponentHidden && styles.hiddenStyle]}
+        style={[styles.iconButton, isRightComponentHidden && styles.hiddenStyle]}
       >
         <View style={styles.NotiNum}>
-          <UnreadMessages number={2} backgroundColor={COLORS.light.Surface.action} />
+          <UnreadMessages
+            number={2}
+            backgroundColor={COLORS[colorScheme].Surface.danger}
+          />
         </View>
         <NotificationBell />
       </View>

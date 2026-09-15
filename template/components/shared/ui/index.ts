@@ -25,3 +25,6 @@ export { default as NoResults } from "./NoResults";
 export { default as ShadowWrapper } from "./ShadowWrapper";
 export { default as ProgressLine } from "./ProgressLine";
 export { default as Snackbar } from "./SnackBar";
+export { default as PressableScale } from "./PressableScale";
+export { default as Orb } from "./Orb";
+export { default as GradientSurface } from "./GradientSurface";
