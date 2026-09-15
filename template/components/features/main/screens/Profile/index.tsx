@@ -1,15 +1,21 @@
 import React, { Fragment } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
+// i18n:start
 import { useTranslation } from "react-i18next";
+// i18n:end
 import { Button, Collapsible, Icon, PressableScale, Text } from "@/components/shared/ui";
 import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
 import GLOBAL_STYLES from "@/constants/GlobalStyles";
+// i18n:start
 import i18n from "@/locale";
+// i18n:end
 import styles from "./styles";
 
+// i18n:start
 type Language = "en" | "ar";
 
+// i18n:end
 const PROFILE_SECTIONS = [
   {
     title: "Personal Information",
@@ -29,19 +35,24 @@ const PROFILE_SECTIONS = [
   },
 ];
 
+// i18n:start
 const LANGUAGES: { value: Language; label: string }[] = [
   { value: "en", label: "EN" },
   { value: "ar", label: "AR" },
 ];
 
+// i18n:end
 export default function Profile() {
   const router = useRouter();
+  // i18n:start
   const { i18n: activeI18n } = useTranslation();
+  // i18n:end
 
   const handleLogout = async () => {
     router.replace("/(auth)/welcome");
   };
 
+  // i18n:start
   const changeLanguage = async (lang: Language) => {
     try {
       await i18n.changeLanguage(lang);
@@ -50,6 +61,7 @@ export default function Profile() {
     }
   };
 
+  // i18n:end
   return (
     <ScreenWrapper variant="main" isScrollable style={styles.screen}>
       <View>
@@ -98,6 +110,7 @@ export default function Profile() {
           preferencesLabel
         </Text>
         <View style={styles.listCard}>
+          {/* i18n:start */}
           <View style={styles.settingRow}>
             <View style={styles.settingIcon}>
               <Icon name="globe" size={18} color="action" />
@@ -128,6 +141,7 @@ export default function Profile() {
             </View>
           </View>
           <View style={styles.divider} />
+          {/* i18n:end */}
           <PressableScale
             style={styles.settingRow}
             pressedScale={0.98}
