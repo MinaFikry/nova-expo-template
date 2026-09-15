@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
-import { IconProps } from "@/components/atoms/Icon/types";
+import { IconProps } from "@/components/shared/ui/Icon/types";
 
 function Check({ size = 9, color = "#0047BB" }: IconProps) {
   return (

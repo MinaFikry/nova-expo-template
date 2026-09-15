@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
-import { IconProps } from "@/components/atoms/Icon/types";
+import { IconProps } from "@/components/shared/ui/Icon/types";
 
 function ArrowDown({ size = 11, color = "#0a7ea4" }: IconProps) {
   return (

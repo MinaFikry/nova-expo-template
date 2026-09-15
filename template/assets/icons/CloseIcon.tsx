@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
-import { IconProps } from "@/components/atoms/Icon/types";
+import { IconProps } from "@/components/shared/ui/Icon/types";
 
 const CloseIcon = ({ size = 24, color = "#272A2A" }: IconProps) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">

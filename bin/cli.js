@@ -179,7 +179,7 @@ async function handleTranslationSetup(targetPath, answers) {
     // Update Text component to remove translation logic
     const textComponentPath = path.join(
       targetPath,
-      "components/atoms/Text/index.tsx"
+      "components/shared/ui/Text/Base/index.tsx"
     );
 
     if (await fs.pathExists(textComponentPath)) {
@@ -215,7 +215,7 @@ async function handleTranslationSetup(targetPath, answers) {
     // Update Text types to remove autoTranslate
     const textTypesPath = path.join(
       targetPath,
-      "components/atoms/Text/types.ts"
+      "components/shared/ui/Text/Base/types.ts"
     );
     if (await fs.pathExists(textTypesPath)) {
       let typesContent = await fs.readFile(textTypesPath, "utf-8");
@@ -226,7 +226,7 @@ async function handleTranslationSetup(targetPath, answers) {
     // Update ThemedView component to remove translation logic
     const themedViewComponentPath = path.join(
       targetPath,
-      "components/atoms/ThemedView/index.tsx"
+      "components/shared/ui/ThemedView/index.tsx"
     );
 
     if (await fs.pathExists(themedViewComponentPath)) {
@@ -256,7 +256,7 @@ async function handleTranslationSetup(targetPath, answers) {
     // Update Input component to remove translation logic
     const inputComponentPath = path.join(
       targetPath,
-      "components/atoms/Input/index.tsx"
+      "components/shared/ui/Input/index.tsx"
     );
 
     if (await fs.pathExists(inputComponentPath)) {
@@ -282,7 +282,11 @@ async function handleTranslationSetup(targetPath, answers) {
     }
 
     // Update profile screen to remove translation logic
-    const profilePath = path.join(targetPath, "app/(main)/(tabs)/profile.tsx");
+    // (app/(main)/(tabs)/profile.tsx is a thin route re-export; the screen lives in the main feature)
+    const profilePath = path.join(
+      targetPath,
+      "components/features/main/screens/Profile/index.tsx"
+    );
     if (await fs.pathExists(profilePath)) {
       let profileContent = await fs.readFile(profilePath, "utf-8");
 

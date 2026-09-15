@@ -1,4 +1,4 @@
-import { iconsList } from "@/components/atoms/Icon/list";
+import { iconsList } from "@/components/shared/ui/Icon/list";
 import { COLORS } from "@/constants/Colors";
 
 export type themeType = keyof typeof COLORS;

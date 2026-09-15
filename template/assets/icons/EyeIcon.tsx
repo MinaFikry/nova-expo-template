@@ -1,6 +1,6 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
-import { IconProps } from "@/components/atoms/Icon/types";
+import { IconProps } from "@/components/shared/ui/Icon/types";
 import { moderateScale } from "@/constants/Metrics";
 
 export default function EyeIcon({ size = moderateScale(18), color = "#0a7ea4" }: IconProps) {
