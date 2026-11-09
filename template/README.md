@@ -88,6 +88,16 @@ Ensure you have the following installed:
   npm run type-check
   ```
 
+### Unit Tests
+
+Tests use Jest (`jest-expo`) and [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) v14. Each test file lives in a `__tests__/` folder next to the code it tests (never under `app/`).
+
+- **Watch mode:** `npm test`
+- **Run once (CI):** `npm run test:ci`
+- **Coverage report:** `npm run test:coverage`
+
+Global mocks (AsyncStorage, and `react-i18next` returning translation keys) are in `jest.setup.ts`. AI agents can follow the `unit-testing` skill in `.agents/skills/unit-testing/`, which has recipes for utils, Redux slices, hooks and components.
+
 ### Development Scripts
 
 - **Generate SVG components:**
