@@ -11,7 +11,6 @@ import {
 } from "@/components/shared/ui";
 import Spacing from "@/constants/Spacing";
 import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
-import { MOTION_DEFAULTS } from "@/components/shared/ui/Motion/presets";
 import { iconsListType } from "@/@types/mainTypes";
 import styles from "./styles";
 
@@ -22,10 +21,13 @@ const FEATURES: { icon: iconsListType; title: string; caption: string }[] = [
   { icon: "code", title: "WELCOME_FEATURE_DEVELOPER", caption: "WELCOME_FEATURE_DEVELOPER_CAPTION" },
 ];
 
-// Entrance sequence (ms): hero, then feature cards one by one, then actions.
-const FEATURES_DELAY = 200;
-const ACTIONS_DELAY =
-  FEATURES_DELAY + FEATURES.length * MOTION_DEFAULTS.staggerStep + 100;
+// Entrance sequence (ms): hero slides in from the right, feature cards slide in
+// from the left one by one, then the buttons rise from the bottom.
+const DURATION = 500;
+const HERO_DELAY = 150;
+const FEATURES_DELAY = 450;
+const FEATURE_STEP = 120; // gap between each feature card
+const ACTIONS_DELAY = FEATURES_DELAY + FEATURES.length * FEATURE_STEP + 150;
 
 const Welcome = () => {
   const router = useRouter();
@@ -33,7 +35,7 @@ const Welcome = () => {
   return (
     <ScreenWrapper paddingSize="sm" showHeader={false} isScrollable>
       <View style={styles.container}>
-        <Motion  preset="pop">
+        <Motion preset="slideRight" duration={DURATION} delay={HERO_DELAY}>
           <GradientSurface style={styles.hero}>
             <Orb size={Spacing.x14 * 4} style={styles.heroOrbLarge} />
             <Orb size={Spacing.x14 * 2} style={styles.heroOrbSmall} opacity={0.08} />
@@ -56,9 +58,9 @@ const Welcome = () => {
           {FEATURES.map((feature, index) => (
             <Motion
               key={feature.title}
-              preset="pop"
-              index={index}
-              delay={FEATURES_DELAY}
+              preset="slideLeft"
+              duration={DURATION}
+              delay={FEATURES_DELAY + index * FEATURE_STEP}
               style={styles.featureCard}
             >
               <View style={styles.featureIcon}>
@@ -76,7 +78,12 @@ const Welcome = () => {
           ))}
         </View>
 
-        <Motion delay={ACTIONS_DELAY}  preset="pop" style={styles.actions}>
+        <Motion
+          preset="fadeUp"
+          duration={DURATION}
+          delay={ACTIONS_DELAY}
+          style={styles.actions}
+        >
           <Button
             title="CREATE_ACCOUNT"
             suffix={<Icon name="arrowRight" size={18} color="onAction" />}
