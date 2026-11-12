@@ -32,3 +32,8 @@ export { default as MotionView } from "./MotionView";
 export { MOTION_PRESETS, type MotionPreset } from "./MotionView/presets";
 export { default as MotionText } from "./MotionText";
 export type { MotionTextEffect, MotionTextProps } from "./MotionText/types";
+export { default as MotionButton } from "./MotionButton";
+export type {
+  MotionButtonEffect,
+  MotionButtonProps,
+} from "./MotionButton/types";

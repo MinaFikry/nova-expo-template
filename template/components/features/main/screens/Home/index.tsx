@@ -29,6 +29,7 @@ const QUICK_ACTIONS: {
   // Temporary entry point for the Motion demo; remove when no longer needed.
   { icon: "zap", title: "MOTION", caption: "HOME_SHORTCUT_MOTION_CAPTION", href: "/(main)/motion" },
   { icon: "star", title: "TEXT_EFFECTS", caption: "HOME_SHORTCUT_TEXT_EFFECTS_CAPTION", href: "/(main)/motion-text" },
+  { icon: "layers", title: "BUTTON_EFFECTS", caption: "HOME_SHORTCUT_BUTTON_EFFECTS_CAPTION", href: "/(main)/motion-button" },
 ];
 
 const Home = () => {

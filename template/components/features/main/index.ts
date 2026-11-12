@@ -8,3 +8,4 @@ export { default as Screen2Screen } from "./screens/Screen2";
 export { default as Screen3Screen } from "./screens/Screen3";
 export { default as MotionShowcaseScreen } from "./screens/MotionShowcase";
 export { default as MotionTextShowcaseScreen } from "./screens/MotionTextShowcase";
+export { default as MotionButtonShowcaseScreen } from "./screens/MotionButtonShowcase";
