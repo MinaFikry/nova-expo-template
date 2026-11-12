@@ -65,6 +65,7 @@
   "DEMO_USER_NAME": "John Doe",
 
   "HOME_GREETING": "Welcome back,",
+  "HOME_MOTIVATION": "Build something great today.",
   "HOME_HERO_TITLE": "Start building",
   "HOME_HERO_BODY": "Your app is ready. Explore the screens and make it your own.",
   "HOME_HERO_ACTION": "Explore the template",

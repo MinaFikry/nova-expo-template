@@ -48,6 +48,10 @@ const Home = () => {
         >
           {greeting}
         </MotionText>
+        {/* Showcases MotionText's gradient effect on a real screen. */}
+        <MotionText effect="gradient" variant="H4">
+          HOME_MOTIVATION
+        </MotionText>
       </View>
 
       <View>
