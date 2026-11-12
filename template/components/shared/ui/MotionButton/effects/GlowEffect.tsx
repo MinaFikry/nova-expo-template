@@ -6,7 +6,8 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { MOTION_BUTTON_DEFAULTS } from "../constants";
-import { useLoopProgress, usePressScaleStyle } from "../hooks";
+import useLoopProgress from "@/hooks/useLoopProgress";
+import { usePressScaleStyle } from "../hooks";
 import { EffectProps } from "../types";
 
 const GLOW = MOTION_BUTTON_DEFAULTS.glow;

@@ -33,6 +33,8 @@ export { MOTION_PRESETS, type MotionPreset } from "./MotionView/presets";
 export { default as MotionText } from "./MotionText";
 export type { MotionTextEffect, MotionTextProps } from "./MotionText/types";
 export { default as MotionButton } from "./MotionButton";
+export { default as Skeleton, SkeletonText } from "./Skeleton";
+export type { SkeletonAnimation } from "./Skeleton/types";
 export type {
   MotionButtonEffect,
   MotionButtonProps,

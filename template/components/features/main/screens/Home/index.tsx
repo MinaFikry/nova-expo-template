@@ -30,6 +30,7 @@ const QUICK_ACTIONS: {
   { icon: "zap", title: "MOTION", caption: "HOME_SHORTCUT_MOTION_CAPTION", href: "/(main)/motion" },
   { icon: "star", title: "TEXT_EFFECTS", caption: "HOME_SHORTCUT_TEXT_EFFECTS_CAPTION", href: "/(main)/motion-text" },
   { icon: "layers", title: "BUTTON_EFFECTS", caption: "HOME_SHORTCUT_BUTTON_EFFECTS_CAPTION", href: "/(main)/motion-button" },
+  { icon: "search", title: "SKELETON", caption: "HOME_SHORTCUT_SKELETON_CAPTION", href: "/(main)/skeleton" },
 ];
 
 const Home = () => {

@@ -9,3 +9,4 @@ export { default as Screen3Screen } from "./screens/Screen3";
 export { default as MotionShowcaseScreen } from "./screens/MotionShowcase";
 export { default as MotionTextShowcaseScreen } from "./screens/MotionTextShowcase";
 export { default as MotionButtonShowcaseScreen } from "./screens/MotionButtonShowcase";
+export { default as SkeletonShowcaseScreen } from "./screens/SkeletonShowcase";
