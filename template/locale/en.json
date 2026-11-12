@@ -15,6 +15,7 @@
   "ROUTE_PARAMS": "Route params",
   "FLASH_LIST": "FlashList",
   "MOTION": "Motion",
+  "TEXT_EFFECTS": "Text effects",
 
   "WELCOME_BADGE": "Expo template",
   "WELCOME_TITLE": "Build apps that feel great",
@@ -73,6 +74,7 @@
   "HOME_SHORTCUT_PROFILE_CAPTION": "Account and preferences",
   "HOME_SHORTCUT_APPEARANCE_CAPTION": "Light or dark mode",
   "HOME_SHORTCUT_MOTION_CAPTION": "Animation examples",
+  "HOME_SHORTCUT_TEXT_EFFECTS_CAPTION": "Animated text examples",
 
   "EXPLORE_SUBTITLE": "Overlays, navigation, and list demos.",
   "EXPLORE_SHEET_TITLE": "Bottom sheet",
@@ -140,6 +142,7 @@
   "FLASH_LIST_SUBTITLE": "50 cards rendered with FlashList",
   "MOTION_SUBTITLE": "Every Motion preset and option. Tap Replay to run them again.",
   "MOTION_REPLAY": "Replay",
+  "TEXT_EFFECTS_SUBTITLE": "Every MotionText effect. Tap Replay to run them again.",
 
   "NOT_FOUND_TITLE": "Page not found",
   "NOT_FOUND_SUBTITLE": "The screen you're looking for doesn't exist or has been moved.",

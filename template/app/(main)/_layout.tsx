@@ -23,6 +23,10 @@ export default function _layout() {
         options={createScreenOptions({ title: "MOTION" })}
       />
       <Stack.Screen
+        name="motion-text/index"
+        options={createScreenOptions({ title: "TEXT_EFFECTS" })}
+      />
+      <Stack.Screen
         name="notifications/index"
         options={createScreenOptions({
           title: "NOTIFICATIONS",
