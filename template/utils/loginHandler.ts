@@ -14,11 +14,11 @@ export default function loginHandler({
 } = {}) {
   if (rememberMe) {
     // we here check if the user got token and pressed remember me
-    // Tokens are secrets: encrypted SecureStore. The rest stays in AsyncStorage.
+    // Tokens and profile go to encrypted SecureStore; the flag stays in AsyncStorage.
     if (token) setSecureItem("token", token);
     if (refreshToken) setSecureItem("refreshToken", refreshToken);
     AsyncStorage.setItem("remember_me", `${rememberMe}`);
-    AsyncStorage.setItem("userInfo", JSON.stringify(userInfo));
+    setSecureItem("userInfo", JSON.stringify(userInfo));
   } else {
     // if user refresh the app and got token but he didn't press remember me so we remove all
     clearStorage();

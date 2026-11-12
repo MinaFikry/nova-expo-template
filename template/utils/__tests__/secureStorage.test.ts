@@ -32,7 +32,7 @@ describe("secureStorage", () => {
     jest.clearAllMocks();
   });
 
-  it("stores tokens in SecureStore, not AsyncStorage", async () => {
+  it("stores tokens in SecureStore only, never AsyncStorage", async () => {
     await setSecureItem("token", "abc");
 
     expect(SecureStore.setItemAsync).toHaveBeenCalledWith("token", "abc");
@@ -44,17 +44,14 @@ describe("secureStorage", () => {
     expect(await getSecureItem("refreshToken")).toBeNull();
   });
 
-  it("moves a legacy AsyncStorage token into SecureStore on first read", async () => {
+  it("does not read tokens from AsyncStorage", async () => {
     await AsyncStorage.setItem("token", "legacy");
 
-    expect(await getSecureItem("token")).toBe("legacy");
-    expect(secureMap.get("token")).toBe("legacy");
-    expect(await AsyncStorage.getItem("token")).toBeNull();
+    expect(await getSecureItem("token")).toBeNull();
   });
 
-  it("removes both the secure value and any legacy copy", async () => {
+  it("removes a stored token", async () => {
     await setSecureItem("token", "abc");
-    await AsyncStorage.setItem("token", "legacy");
 
     await removeSecureItem("token");
 
