@@ -1,6 +1,7 @@
 import {
   easeOutCubic,
   formatCount,
+  hasJoiningScript,
   splitWords,
   toLoopColors,
 } from "@/components/shared/ui/MotionText/utils";
@@ -61,5 +62,19 @@ describe("easeOutCubic", () => {
 describe("formatCount", () => {
   it("rounds and groups thousands", () => {
     expect(formatCount(1250.4)).toBe("1,250");
+  });
+});
+
+describe("hasJoiningScript", () => {
+  it("detects Arabic text", () => {
+    expect(hasJoiningScript("مرحبًا بعودتك")).toBe(true);
+  });
+
+  it("detects Arabic mixed with Latin", () => {
+    expect(hasJoiningScript("Expo تطبيق")).toBe(true);
+  });
+
+  it("is false for Latin text and emoji", () => {
+    expect(hasJoiningScript("Welcome back 👋")).toBe(false);
   });
 });

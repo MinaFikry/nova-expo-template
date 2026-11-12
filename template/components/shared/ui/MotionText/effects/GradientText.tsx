@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useMemo } from "react";
-import { StyleSheet } from "react-native";
+import { I18nManager, StyleSheet } from "react-native";
 import Animated, {
   SharedValue,
   useAnimatedStyle,
@@ -22,8 +22,17 @@ interface GradientLayerProps {
 }
 
 function GradientLayer({ width, progress, colors }: GradientLayerProps) {
+  // Colors flow in reading direction: leftward for LTR, rightward for RTL.
+  // Either way the 2×-wide track always covers the text.
+  const isRTL = I18nManager.isRTL;
   const slideStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: -progress.get() * width }],
+    transform: [
+      {
+        translateX: isRTL
+          ? -width + progress.get() * width
+          : -progress.get() * width,
+      },
+    ],
   }));
 
   return (

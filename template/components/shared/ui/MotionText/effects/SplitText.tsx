@@ -10,7 +10,7 @@ import {
 } from "@/components/shared/ui/MotionView/presets";
 import { MOTION_TEXT_DEFAULTS } from "../constants";
 import { TextStyleProps } from "../types";
-import { splitWords } from "../utils";
+import { hasJoiningScript, splitWords } from "../utils";
 
 interface SplitTextProps {
   text: string;
@@ -24,7 +24,8 @@ interface SplitTextProps {
 
 /**
  * Each word (or letter) enters one after another with a MotionView preset.
- * Lines still wrap between words. Letters break Arabic joining; use words there.
+ * Lines still wrap between words. Arabic text always animates by word, since
+ * splitting it into letters would break the joined letter forms.
  */
 export default function SplitText({
   text,
@@ -35,7 +36,8 @@ export default function SplitText({
   delay = 0,
   step = MOTION_TEXT_DEFAULTS[by].step,
 }: SplitTextProps) {
-  const words = useMemo(() => splitWords(text, by), [text, by]);
+  const mode = by === "letters" && hasJoiningScript(text) ? "words" : by;
+  const words = useMemo(() => splitWords(text, mode), [text, mode]);
   const { entering } = MOTION_PRESETS[preset];
 
   return (

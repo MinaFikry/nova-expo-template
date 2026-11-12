@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, View } from "react-native";
+import { I18nManager, StyleSheet, View } from "react-native";
 import Animated, {
   SharedValue,
   useAnimatedStyle,
@@ -25,10 +25,17 @@ interface ShimmerLayerProps {
 function ShimmerLayer({ width, progress }: ShimmerLayerProps) {
   const bandWidth = width * DEFAULTS.bandRatio;
 
-  // Band starts fully left of the text and ends fully right of it.
+  // Band travels in reading direction: left → right for LTR, right → left
+  // for RTL, starting and ending fully outside the text.
+  const isRTL = I18nManager.isRTL;
+  const travel = width + bandWidth;
   const bandStyle = useAnimatedStyle(() => ({
     transform: [
-      { translateX: -bandWidth + progress.get() * (width + bandWidth) },
+      {
+        translateX: isRTL
+          ? width - progress.get() * travel
+          : -bandWidth + progress.get() * travel,
+      },
     ],
   }));
 

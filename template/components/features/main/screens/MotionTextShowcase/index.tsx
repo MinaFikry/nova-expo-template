@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
 import { Button, MotionText, Text } from "@/components/shared/ui";
@@ -11,10 +12,14 @@ const CUSTOM_GRADIENT = ["#22C55E", "#06B6D4", "#3B82F6"] as const;
 const formatPrice = (value: number) => `$${value.toFixed(2)}`;
 
 /**
- * One live example per MotionText effect. Each section has its own Replay
- * button; the one at the top replays every section.
+ * One live example per MotionText effect, in the app's language. Each section
+ * has its own Replay button; the one at the top replays every section.
+ * Section titles and examples are i18n keys; descriptions and labels are
+ * translated here because ShowcaseSection/ShowcaseItem render them as-is.
+ * Code labels (hasGlow, preset="pop"...) stay in English on purpose.
  */
 export default function MotionTextShowcase() {
+  const { t } = useTranslation();
   const [replayKey, setReplayKey] = useState(0);
   const replay = () => setReplayKey((key) => key + 1);
 
@@ -31,54 +36,48 @@ export default function MotionTextShowcase() {
       <View style={styles.sections}>
         <ReplaySection
           replayAllKey={replayKey}
-          title="Gradient"
-          description='effect="gradient" — colors sweep through the letters in a loop.'
+          title="TEXT_EFFECTS_GRADIENT"
+          description={t("TEXT_EFFECTS_GRADIENT_DESC")}
         >
-          <ShowcaseItem label="Default (i18n key WELCOME_TITLE)">
+          <ShowcaseItem label={t("TEXT_EFFECTS_DEFAULT")}>
             <MotionText effect="gradient" variant="H1">
               WELCOME_TITLE
             </MotionText>
           </ShowcaseItem>
           <ShowcaseItem label="hasGlow">
-            <MotionText
-              effect="gradient"
-              hasGlow
-              variant="H1"
-              autoTranslate={false}
-            >
-              Neon glow
+            <MotionText effect="gradient" hasGlow variant="H1">
+              TEXT_EFFECTS_NEON_SAMPLE
             </MotionText>
           </ShowcaseItem>
-          <ShowcaseItem label="Custom colors, duration={2000}">
+          <ShowcaseItem label="colors, duration={2000}">
             <MotionText
               effect="gradient"
               colors={CUSTOM_GRADIENT}
               duration={2000}
               variant="H2"
-              autoTranslate={false}
             >
-              Fresh and fast
+              TEXT_EFFECTS_CUSTOM_GRADIENT_SAMPLE
             </MotionText>
           </ShowcaseItem>
         </ReplaySection>
 
         <ReplaySection
           replayAllKey={replayKey}
-          title="Shimmer"
-          description='effect="shimmer" — a bright band passes over the text.'
+          title="TEXT_EFFECTS_SHIMMER"
+          description={t("TEXT_EFFECTS_SHIMMER_DESC")}
         >
-          <MotionText effect="shimmer" variant="lg" autoTranslate={false}>
-            Loading your data…
+          <MotionText effect="shimmer" variant="lg">
+            TEXT_EFFECTS_SHIMMER_SAMPLE
           </MotionText>
         </ReplaySection>
 
         <ReplaySection
           replayAllKey={replayKey}
-          title="Typing"
-          description='effect="typing" — one character at a time, with a cursor.'
+          title="TEXT_EFFECTS_TYPING"
+          description={t("TEXT_EFFECTS_TYPING_DESC")}
         >
-          <MotionText effect="typing" variant="H3" autoTranslate={false}>
-            Hello, welcome back 👋
+          <MotionText effect="typing" variant="H3">
+            TEXT_EFFECTS_TYPING_SAMPLE
           </MotionText>
           <ShowcaseItem label="speed={120}, hasCursor={false}">
             <MotionText
@@ -87,60 +86,49 @@ export default function MotionTextShowcase() {
               hasCursor={false}
               variant="md"
               color="body"
-              autoTranslate={false}
             >
-              Slower, no cursor.
+              TEXT_EFFECTS_TYPING_SLOW_SAMPLE
             </MotionText>
           </ShowcaseItem>
         </ReplaySection>
 
         <ReplaySection
           replayAllKey={replayKey}
-          title="Words"
-          description='effect="words" — each word enters with a MotionView preset.'
+          title="TEXT_EFFECTS_WORDS"
+          description={t("TEXT_EFFECTS_WORDS_DESC")}
         >
-          <MotionText effect="words" variant="H3" autoTranslate={false}>
-            Build apps that feel great
+          <MotionText effect="words" variant="H3">
+            WELCOME_TITLE
           </MotionText>
           <ShowcaseItem label='preset="pop"'>
-            <MotionText
-              effect="words"
-              preset="pop"
-              variant="H3"
-              autoTranslate={false}
-            >
-              Every word pops in
+            <MotionText effect="words" preset="pop" variant="H3">
+              TEXT_EFFECTS_WORDS_POP_SAMPLE
             </MotionText>
           </ShowcaseItem>
         </ReplaySection>
 
         <ReplaySection
           replayAllKey={replayKey}
-          title="Letters"
-          description='effect="letters" — letter by letter. Use "words" for Arabic.'
+          title="TEXT_EFFECTS_LETTERS"
+          description={t("TEXT_EFFECTS_LETTERS_DESC")}
         >
-          <MotionText effect="letters" variant="H2" autoTranslate={false}>
-            Letter by letter
+          <MotionText effect="letters" variant="H2">
+            TEXT_EFFECTS_LETTERS_SAMPLE
           </MotionText>
           <ShowcaseItem label='preset="fadeDown"'>
-            <MotionText
-              effect="letters"
-              preset="fadeDown"
-              variant="H2"
-              autoTranslate={false}
-            >
-              Dropping in
+            <MotionText effect="letters" preset="fadeDown" variant="H2">
+              TEXT_EFFECTS_LETTERS_DROP_SAMPLE
             </MotionText>
           </ShowcaseItem>
         </ReplaySection>
 
         <ReplaySection
           replayAllKey={replayKey}
-          title="Count"
-          description='effect="count" — counts up to a number, easing at the end.'
+          title="TEXT_EFFECTS_COUNT"
+          description={t("TEXT_EFFECTS_COUNT_DESC")}
         >
           <MotionText effect="count" to={1250} variant="H1" />
-          <ShowcaseItem label="Custom format (price)">
+          <ShowcaseItem label={t("TEXT_EFFECTS_PRICE_FORMAT")}>
             <MotionText
               effect="count"
               to={49.99}

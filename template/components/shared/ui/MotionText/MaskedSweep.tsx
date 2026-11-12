@@ -84,7 +84,7 @@ export default function MaskedSweep({
           {text}
         </Text>
         {width > 0 && (
-          <View style={StyleSheet.absoluteFill}>
+          <View style={[StyleSheet.absoluteFill, styles.layer]}>
             {renderLayer(width, progress)}
           </View>
         )}
@@ -96,5 +96,11 @@ export default function MaskedSweep({
 const styles = StyleSheet.create({
   hidden: {
     opacity: 0,
+  },
+  // Layers position themselves from the left edge. Without this, Arabic (RTL)
+  // layout anchors them on the right and the sweep leaves blank gaps.
+  // Layers flip their sweep direction for RTL themselves.
+  layer: {
+    direction: "ltr",
   },
 });

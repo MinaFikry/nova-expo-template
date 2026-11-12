@@ -1,7 +1,15 @@
 import React from "react";
 import { View } from "react-native";
 import { Href, useRouter } from "expo-router";
-import { Orb, GradientSurface, Icon, PressableScale, Text } from "@/components/shared/ui";
+import { useTranslation } from "react-i18next";
+import {
+  Orb,
+  GradientSurface,
+  Icon,
+  MotionText,
+  PressableScale,
+  Text,
+} from "@/components/shared/ui";
 import Spacing from "@/constants/Spacing";
 import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
 import GLOBAL_STYLES from "@/constants/GlobalStyles";
@@ -25,14 +33,21 @@ const QUICK_ACTIONS: {
 
 const Home = () => {
   const router = useRouter();
+  const { t } = useTranslation();
+  // One line, typed as a single sentence: "Welcome back, John Doe".
+  const greeting = `${t("HOME_GREETING")} ${t("DEMO_USER_NAME")}`;
 
   return (
     <ScreenWrapper variant="main" isScrollable style={styles.screen}>
       <View style={styles.greeting}>
-        <Text variant="sm" color="caption">
-          HOME_GREETING
-        </Text>
-        <Text variant="H1">DEMO_USER_NAME</Text>
+        <MotionText
+          effect="typing"
+          hasCursor={false}
+          variant="H2"
+          autoTranslate={false}
+        >
+          {greeting}
+        </MotionText>
       </View>
 
       <View>
