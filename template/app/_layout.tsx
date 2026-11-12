@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaInsetsContext } from "react-native-safe-area-context";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 import { StyleSheet, View } from "react-native";
 import { Provider } from "react-redux";
 import store from "@/redux";
@@ -94,12 +95,14 @@ const AppProviders = ({ children }: { children: React.ReactNode }) => (
       >
         <StatusBar style={theme === "dark" ? "light" : "dark"} />
         <Provider store={store}>
-          <SheetProvider>
-            {/* <NotificationListnerContainer /> */}
-            <Toast />
+          <KeyboardProvider>
+            <SheetProvider>
+              {/* <NotificationListnerContainer /> */}
+              <Toast />
 
-            {children}
-          </SheetProvider>
+              {children}
+            </SheetProvider>
+          </KeyboardProvider>
         </Provider>
       </View>
     )}

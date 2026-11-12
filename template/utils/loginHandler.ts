@@ -4,6 +4,7 @@ import store from "@/redux";
 import { login, setUserInfo } from "@/redux/authReducer";
 import { loggedInUser } from "@/apis/services/auth/types";
 import clearStorage from "@/utils/clearStorage";
+import { setSecureItem } from "@/utils/secureStorage";
 
 export default function loginHandler({
   token = "",
@@ -13,8 +14,9 @@ export default function loginHandler({
 } = {}) {
   if (rememberMe) {
     // we here check if the user got token and pressed remember me
-    if (token) AsyncStorage.setItem("token", token);
-    if (refreshToken) AsyncStorage.setItem("refreshToken", refreshToken);
+    // Tokens are secrets: encrypted SecureStore. The rest stays in AsyncStorage.
+    if (token) setSecureItem("token", token);
+    if (refreshToken) setSecureItem("refreshToken", refreshToken);
     AsyncStorage.setItem("remember_me", `${rememberMe}`);
     AsyncStorage.setItem("userInfo", JSON.stringify(userInfo));
   } else {

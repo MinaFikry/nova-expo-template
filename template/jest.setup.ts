@@ -20,3 +20,8 @@ jest.mock("react-i18next", () => ({
   Trans: ({ children }: { children: unknown }) => children,
   initReactI18next: { type: "3rdParty", init: jest.fn() },
 }));
+
+// Native keyboard module isn't available in Jest; use the library's official mock.
+jest.mock("react-native-keyboard-controller", () =>
+  require("react-native-keyboard-controller/jest"),
+);

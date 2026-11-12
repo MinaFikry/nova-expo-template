@@ -282,7 +282,6 @@ import { ScreenWrapper } from "@/components/shared/layout";
 | `isStatusBarShown` | `false` | Auth variant only — pads the top by the status bar height instead of 10 |
 | `showHeader` | `variant === "auth"` | Renders the logo header |
 | `hasNoHorizontalSpacing` | `false` | Removes horizontal padding |
-| `hasNoKeyboardVerticalOffset` | `false` | Drops the header-height keyboard offset |
 
 ### Wrappers (`components/shared/wrappers/`)
 Container / overlay wrappers — `Card`, `Dialog`, `FlashList`, modals, and bottom sheets.

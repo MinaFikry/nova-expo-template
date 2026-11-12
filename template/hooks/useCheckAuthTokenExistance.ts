@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { login, setUserInfo } from "@/redux/authReducer";
 import clearStorage from "@/utils/clearStorage";
+import { getSecureItem } from "@/utils/secureStorage";
 
 export default function useCheckAuthTokenExistance() {
   const dispatch = useDispatch();
 
   const rememberMeCheck = async () => {
-    const userToken = await AsyncStorage.getItem("token");
+    const userToken = await getSecureItem("token");
     const userInfo = await AsyncStorage.getItem("userInfo");
     const user = userInfo ? JSON.parse(userInfo) : null;
     const rememberMe = await AsyncStorage.getItem("remember_me");
