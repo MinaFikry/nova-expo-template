@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import api from "@/apis";
 import store from "@/redux";
 import { login, setUserInfo } from "@/redux/authReducer";
-import { loggedInUser } from "@/apis/services/auth/types";
+import { User } from "@/apis/services/auth/types";
 import clearStorage from "@/utils/clearStorage";
 import { setSecureItem } from "@/utils/secureStorage";
 
@@ -10,7 +10,7 @@ export default function loginHandler({
   token = "",
   refreshToken = "",
   rememberMe = false,
-  userInfo = {} as loggedInUser,
+  userInfo = {} as User,
 } = {}) {
   if (rememberMe) {
     // we here check if the user got token and pressed remember me
