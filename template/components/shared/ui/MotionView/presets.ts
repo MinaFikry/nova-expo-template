@@ -27,13 +27,7 @@ interface MotionPresetConfig {
 }
 
 export type MotionPreset =
-  | "fade"
-  | "fadeUp"
-  | "fadeDown"
-  | "slideLeft"
-  | "slideRight"
-  | "zoom"
-  | "pop";
+  "fade" | "fadeUp" | "fadeDown" | "slideLeft" | "slideRight" | "zoom" | "pop";
 
 export const MOTION_DEFAULTS = {
   duration: 300,
@@ -55,7 +49,7 @@ const popIn: AnimationFactory = (duration, delay) =>
     .delay(delay);
 
 /**
- * Every named animation `<Motion preset="...">` supports. To add one, add its
+ * Every named animation `<MotionView preset="...">` supports. To add one, add its
  * name to `MotionPreset` and its enter/exit animations here.
  */
 export const MOTION_PRESETS: Record<MotionPreset, MotionPresetConfig> = {

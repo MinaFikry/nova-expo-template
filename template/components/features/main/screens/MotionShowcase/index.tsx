@@ -5,12 +5,12 @@ import { BounceIn, FadeIn } from "react-native-reanimated";
 import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
 import {
   Button,
-  Motion,
+  MotionView,
   MOTION_PRESETS,
   MotionPreset,
   Text,
 } from "@/components/shared/ui";
-import { MOTION_DEFAULTS } from "@/components/shared/ui/Motion/presets";
+import { MOTION_DEFAULTS } from "@/components/shared/ui/MotionView/presets";
 import MotionPlayground from "../../components/MotionPlayground";
 import ShowcaseItem from "../../components/ShowcaseItem";
 import ShowcaseSection from "../../components/ShowcaseSection";
@@ -35,7 +35,7 @@ function DemoBox({ label }: { label: string }) {
 }
 
 /**
- * Live examples of every Motion preset and option. The playground picks a
+ * Live examples of every MotionView preset and option. The playground picks a
  * preset, duration and delay; any change (or "Replay") remounts every example.
  */
 export default function MotionShowcase() {
@@ -80,13 +80,13 @@ export default function MotionShowcase() {
       <View key={replayKey} style={styles.sections}>
         <ShowcaseSection
           title="Presets"
-          description='<Motion preset="..."> — each plays on mount and reverses on unmount.'
+          description='<MotionView preset="..."> — each plays on mount and reverses on unmount.'
         >
           {PRESETS.map((item) => (
             <ShowcaseItem key={item} label={item}>
-              <Motion preset={item} duration={duration}>
+              <MotionView preset={item} duration={duration}>
                 <DemoBox label={item} />
-              </Motion>
+              </MotionView>
             </ShowcaseItem>
           ))}
         </ShowcaseSection>
@@ -96,9 +96,9 @@ export default function MotionShowcase() {
           description="index={i} adds 60ms per item so a list enters one by one."
         >
           {STAGGER_ITEMS.map((label, index) => (
-            <Motion key={label} index={index} duration={duration}>
+            <MotionView key={label} index={index} duration={duration}>
               <DemoBox label={`${label} (index ${index})`} />
-            </Motion>
+            </MotionView>
           ))}
         </ShowcaseSection>
 
@@ -107,20 +107,20 @@ export default function MotionShowcase() {
           description="duration and delay are in milliseconds."
         >
           <ShowcaseItem label="duration={1200}">
-            <Motion duration={1200}>
+            <MotionView duration={1200}>
               <DemoBox label="Slow" />
-            </Motion>
+            </MotionView>
           </ShowcaseItem>
           <ShowcaseItem label="delay={800}">
-            <Motion delay={800}>
+            <MotionView delay={800}>
               <DemoBox label="Waits, then enters" />
-            </Motion>
+            </MotionView>
           </ShowcaseItem>
         </ShowcaseSection>
 
         <ShowcaseSection
           title="Exit"
-          description="Removing a Motion plays the preset's exit animation."
+          description="Removing a MotionView plays the preset's exit animation."
         >
           <Button
             title={isExitBoxShown ? "Hide" : "Show"}
@@ -130,9 +130,9 @@ export default function MotionShowcase() {
           />
           <View style={styles.exitArea}>
             {isExitBoxShown && (
-              <Motion preset="zoom" duration={duration}>
+              <MotionView preset="zoom" duration={duration}>
                 <DemoBox label="zoom in / zoom out" />
-              </Motion>
+              </MotionView>
             )}
           </View>
         </ShowcaseSection>
@@ -142,14 +142,14 @@ export default function MotionShowcase() {
           description="Pass any Reanimated animation to entering / exiting."
         >
           <ShowcaseItem label="entering={FadeIn.springify()}">
-            <Motion entering={FadeIn.springify()}>
+            <MotionView entering={FadeIn.springify()}>
               <DemoBox label="Spring fade" />
-            </Motion>
+            </MotionView>
           </ShowcaseItem>
           <ShowcaseItem label="entering={BounceIn.duration(700)}">
-            <Motion entering={BounceIn.duration(700)}>
+            <MotionView entering={BounceIn.duration(700)}>
               <DemoBox label="Bounce" />
-            </Motion>
+            </MotionView>
           </ShowcaseItem>
         </ShowcaseSection>
       </View>

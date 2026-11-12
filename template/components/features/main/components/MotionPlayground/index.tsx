@@ -2,7 +2,7 @@ import { View } from "react-native";
 
 import {
   Button,
-  Motion,
+  MotionView,
   MOTION_PRESETS,
   MotionPreset,
   PressableScale,
@@ -102,7 +102,7 @@ export default function MotionPlayground({
       </ShowcaseItem>
 
       <View style={styles.stage}>
-        <Motion
+        <MotionView
           key={replayKey}
           preset={preset}
           duration={duration}
@@ -118,7 +118,7 @@ export default function MotionPlayground({
               {`${preset} · ${formatMs(duration)}`}
             </Text>
           </View>
-        </Motion>
+        </MotionView>
       </View>
 
       <Button title="Play" size="md" variant="outlined" onPress={onReplay} />

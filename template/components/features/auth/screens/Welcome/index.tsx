@@ -6,7 +6,7 @@ import {
   Orb,
   GradientSurface,
   Icon,
-  Motion,
+  MotionView,
   Text,
 } from "@/components/shared/ui";
 import Spacing from "@/constants/Spacing";
@@ -54,7 +54,7 @@ const Welcome = () => {
   return (
     <ScreenWrapper paddingSize="sm" showHeader={false} isScrollable>
       <View style={styles.container}>
-        <Motion preset="pop">
+        <MotionView preset="pop">
           <GradientSurface style={styles.hero}>
             <Orb size={Spacing.x14 * 4} style={styles.heroOrbLarge} />
             <Orb
@@ -75,11 +75,11 @@ const Welcome = () => {
               WELCOME_SUBTITLE
             </Text>
           </GradientSurface>
-        </Motion>
+        </MotionView>
 
         <View style={styles.featuresGrid}>
           {FEATURES.map((feature, index) => (
-            <Motion
+            <MotionView
               key={feature.title}
               preset="slideLeft"
               duration={CARD_DURATION}
@@ -97,11 +97,11 @@ const Welcome = () => {
                   {feature.caption}
                 </Text>
               </View>
-            </Motion>
+            </MotionView>
           ))}
         </View>
 
-        <Motion delay={ACTIONS_DELAY} style={styles.actions}>
+        <MotionView delay={ACTIONS_DELAY} style={styles.actions}>
           <Button
             title="CREATE_ACCOUNT"
             suffix={<Icon name="arrowRight" size={18} color="onAction" />}
@@ -112,7 +112,7 @@ const Welcome = () => {
             variant="outlined"
             onPress={() => router.push("/(auth)/login")}
           />
-        </Motion>
+        </MotionView>
       </View>
     </ScreenWrapper>
   );

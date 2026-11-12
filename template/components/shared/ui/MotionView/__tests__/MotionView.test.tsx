@@ -2,11 +2,11 @@ import { render, screen } from "@testing-library/react-native";
 import { Text } from "react-native";
 import { FadeIn } from "react-native-reanimated";
 
-import Motion from "@/components/shared/ui/Motion";
-import { MOTION_PRESETS } from "@/components/shared/ui/Motion/presets";
+import MotionView from "@/components/shared/ui/MotionView";
+import { MOTION_PRESETS } from "@/components/shared/ui/MotionView/presets";
 
 // Reanimated needs native code, and its bundled Jest mock fails to initialize
-// in this setup. Motion only picks a preset and timing, so a minimal stand-in
+// in this setup. MotionView only picks a preset and timing, so a minimal stand-in
 // is enough: Animated.View renders a View, animation builders chain freely.
 jest.mock("react-native-reanimated", () => {
   const { View } = jest.requireActual("react-native");
@@ -27,14 +27,14 @@ jest.mock("react-native-reanimated", () => {
   );
 });
 
-describe("Motion", () => {
+describe("MotionView", () => {
   afterEach(() => jest.restoreAllMocks());
 
   it("renders its children", async () => {
     await render(
-      <Motion>
+      <MotionView>
         <Text>Hello</Text>
-      </Motion>,
+      </MotionView>,
     );
 
     expect(screen.getByText("Hello")).toBeOnTheScreen();
@@ -43,7 +43,7 @@ describe("Motion", () => {
   it("uses fadeUp with the default 300ms duration and no delay", async () => {
     const entering = jest.spyOn(MOTION_PRESETS.fadeUp, "entering");
 
-    await render(<Motion>{null}</Motion>);
+    await render(<MotionView>{null}</MotionView>);
 
     expect(entering).toHaveBeenCalledWith(300, 0);
   });
@@ -52,9 +52,9 @@ describe("Motion", () => {
     const entering = jest.spyOn(MOTION_PRESETS.zoom, "entering");
 
     await render(
-      <Motion preset="zoom" duration={500} delay={150}>
+      <MotionView preset="zoom" duration={500} delay={150}>
         {null}
-      </Motion>,
+      </MotionView>,
     );
 
     expect(entering).toHaveBeenCalledWith(500, 150);
@@ -64,9 +64,9 @@ describe("Motion", () => {
     const entering = jest.spyOn(MOTION_PRESETS.fadeUp, "entering");
 
     await render(
-      <Motion index={2} delay={100}>
+      <MotionView index={2} delay={100}>
         {null}
-      </Motion>,
+      </MotionView>,
     );
 
     expect(entering).toHaveBeenCalledWith(300, 220);
@@ -75,7 +75,7 @@ describe("Motion", () => {
   it("uses a custom entering animation instead of the preset", async () => {
     const entering = jest.spyOn(MOTION_PRESETS.fadeUp, "entering");
 
-    await render(<Motion entering={FadeIn}>{null}</Motion>);
+    await render(<MotionView entering={FadeIn}>{null}</MotionView>);
 
     expect(entering).not.toHaveBeenCalled();
   });
@@ -83,7 +83,7 @@ describe("Motion", () => {
   it("skips the exit animation when hasExit is false", async () => {
     const exiting = jest.spyOn(MOTION_PRESETS.fadeUp, "exiting");
 
-    await render(<Motion hasExit={false}>{null}</Motion>);
+    await render(<MotionView hasExit={false}>{null}</MotionView>);
 
     expect(exiting).not.toHaveBeenCalled();
   });

@@ -4,7 +4,7 @@ import { EntryOrExitLayoutType } from "react-native-reanimated";
 
 import { MotionPreset } from "./presets";
 
-export interface MotionProps extends ViewProps {
+export interface MotionViewProps extends ViewProps {
   children: ReactNode;
   /** Named animation from presets.ts. Defaults to "fadeUp". */
   preset?: MotionPreset;

@@ -1,7 +1,7 @@
 import Animated from "react-native-reanimated";
 
 import { MOTION_DEFAULTS, MOTION_PRESETS } from "./presets";
-import { MotionProps } from "./types";
+import { MotionViewProps } from "./types";
 
 /**
  * Wrapper that animates its children in and out, like `Animated.View` with
@@ -9,14 +9,14 @@ import { MotionProps } from "./types";
  * and follows the device's "reduce motion" setting.
  *
  * @example
- * <Motion>...</Motion>                           // fade up on mount
- * <Motion preset="zoom" delay={150}>...</Motion> // named preset + delay
+ * <MotionView>...</MotionView>                           // fade up on mount
+ * <MotionView preset="zoom" delay={150}>...</MotionView> // named preset + delay
  * {items.map((item, i) => (
- *   <Motion key={item.id} index={i}>...</Motion> // staggered list
+ *   <MotionView key={item.id} index={i}>...</MotionView> // staggered list
  * ))}
- * <Motion entering={FadeIn.springify()}>...</Motion> // fully custom
+ * <MotionView entering={FadeIn.springify()}>...</MotionView> // fully custom
  */
-export default function Motion({
+export default function MotionView({
   children,
   preset = "fadeUp",
   duration = MOTION_DEFAULTS.duration,
@@ -26,7 +26,7 @@ export default function Motion({
   entering,
   exiting,
   ...viewProps
-}: MotionProps) {
+}: MotionViewProps) {
   const config = MOTION_PRESETS[preset];
   const enterDelay = delay + index * MOTION_DEFAULTS.staggerStep;
 
