@@ -140,6 +140,8 @@
   "NOT_FOUND_TITLE": "الصفحة غير موجودة",
   "NOT_FOUND_SUBTITLE": "الشاشة التي تبحث عنها غير موجودة أو تم نقلها.",
   "BACK_TO_HOME": "العودة للرئيسية",
+  "SCREEN_ERROR_TITLE": "حدث خطأ غير متوقع",
+  "RELOAD_APP": "إعادة تشغيل التطبيق",
 
   "NOTIFICATIONS_SUBTITLE": "ابقَ على اطلاع بكل جديد.",
   "NOTIFICATIONS_ALL_CAUGHT_UP": "لا يوجد جديد.",

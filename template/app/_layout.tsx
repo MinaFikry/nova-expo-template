@@ -14,6 +14,16 @@ import useThemeSync from "@/hooks/useThemeSync";
 import { COLORS } from "@/constants/Colors";
 import { theme } from "@/utils/getTheme";
 import AnimatedSplash from "@/components/shared/layout/AnimatedSplash";
+import ScreenErrorFallback from "@/components/shared/layout/ScreenErrorFallback";
+
+/**
+ * If a screen throws while rendering, show ScreenErrorFallback in its place
+ * (with "Try again" and "Back to home") instead of crashing the whole app.
+ * Applies to every route below this layout. SDK 58 API, still `unstable_`.
+ */
+export const unstable_settings = {
+  screenErrorBoundary: ScreenErrorFallback,
+};
 /**
  * EAS Observe (performance monitoring), disabled by default.
  *
