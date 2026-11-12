@@ -28,3 +28,5 @@ export { default as Snackbar } from "./SnackBar";
 export { default as PressableScale } from "./PressableScale";
 export { default as Orb } from "./Orb";
 export { default as GradientSurface } from "./GradientSurface";
+export { default as Motion } from "./Motion";
+export { MOTION_PRESETS, type MotionPreset } from "./Motion/presets";

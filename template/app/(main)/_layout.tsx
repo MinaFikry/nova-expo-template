@@ -19,6 +19,10 @@ export default function _layout() {
         options={createScreenOptions({ title: "FLASH_LIST" })}
       />
       <Stack.Screen
+        name="motion/index"
+        options={createScreenOptions({ title: "MOTION" })}
+      />
+      <Stack.Screen
         name="notifications/index"
         options={createScreenOptions({
           title: "NOTIFICATIONS",

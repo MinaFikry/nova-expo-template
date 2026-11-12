@@ -14,6 +14,7 @@
   "APPEARANCE": "المظهر",
   "ROUTE_PARAMS": "معاملات المسار",
   "FLASH_LIST": "FlashList",
+  "MOTION": "الحركة",
 
   "WELCOME_BADGE": "قالب Expo",
   "WELCOME_TITLE": "ابنِ تطبيقات رائعة الإحساس",
@@ -71,6 +72,7 @@
   "HOME_SHORTCUT_FAVORITES_CAPTION": "العناصر التي حفظتها",
   "HOME_SHORTCUT_PROFILE_CAPTION": "الحساب والتفضيلات",
   "HOME_SHORTCUT_APPEARANCE_CAPTION": "الوضع الفاتح أو الداكن",
+  "HOME_SHORTCUT_MOTION_CAPTION": "أمثلة على الحركة",
 
   "EXPLORE_SUBTITLE": "النوافذ والتنقل وعروض القوائم.",
   "EXPLORE_SHEET_TITLE": "اللوحة السفلية",
@@ -136,6 +138,8 @@
   "ROUTE_PARAMS_NEXT_ACTION": "افتح عرض FlashList",
 
   "FLASH_LIST_SUBTITLE": "50 بطاقة معروضة باستخدام FlashList",
+  "MOTION_SUBTITLE": "كل أنماط الحركة وخياراتها. اضغط إعادة التشغيل لتشغيلها مرة أخرى.",
+  "MOTION_REPLAY": "إعادة التشغيل",
 
   "NOT_FOUND_TITLE": "الصفحة غير موجودة",
   "NOT_FOUND_SUBTITLE": "الشاشة التي تبحث عنها غير موجودة أو تم نقلها.",

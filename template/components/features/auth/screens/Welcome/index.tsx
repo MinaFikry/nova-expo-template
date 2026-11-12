@@ -1,9 +1,17 @@
 import React from "react";
 import { View } from "react-native";
 import { useRouter } from "expo-router";
-import { Button, Orb, GradientSurface, Icon, Text } from "@/components/shared/ui";
+import {
+  Button,
+  Orb,
+  GradientSurface,
+  Icon,
+  Motion,
+  Text,
+} from "@/components/shared/ui";
 import Spacing from "@/constants/Spacing";
 import ScreenWrapper from "@/components/shared/layout/ScreenWrapper";
+import { MOTION_DEFAULTS } from "@/components/shared/ui/Motion/presets";
 import { iconsListType } from "@/@types/mainTypes";
 import styles from "./styles";
 
@@ -14,13 +22,18 @@ const FEATURES: { icon: iconsListType; title: string; caption: string }[] = [
   { icon: "code", title: "WELCOME_FEATURE_DEVELOPER", caption: "WELCOME_FEATURE_DEVELOPER_CAPTION" },
 ];
 
+// Entrance sequence (ms): hero, then feature cards one by one, then actions.
+const FEATURES_DELAY = 200;
+const ACTIONS_DELAY =
+  FEATURES_DELAY + FEATURES.length * MOTION_DEFAULTS.staggerStep + 100;
+
 const Welcome = () => {
   const router = useRouter();
 
   return (
     <ScreenWrapper paddingSize="sm" showHeader={false} isScrollable>
       <View style={styles.container}>
-        <View>
+        <Motion  preset="pop">
           <GradientSurface style={styles.hero}>
             <Orb size={Spacing.x14 * 4} style={styles.heroOrbLarge} />
             <Orb size={Spacing.x14 * 2} style={styles.heroOrbSmall} opacity={0.08} />
@@ -37,11 +50,17 @@ const Welcome = () => {
             WELCOME_SUBTITLE
           </Text>
           </GradientSurface>
-        </View>
+        </Motion>
 
         <View style={styles.featuresGrid}>
-          {FEATURES.map((feature) => (
-            <View key={feature.title} style={styles.featureCard}>
+          {FEATURES.map((feature, index) => (
+            <Motion
+              key={feature.title}
+              preset="pop"
+              index={index}
+              delay={FEATURES_DELAY}
+              style={styles.featureCard}
+            >
               <View style={styles.featureIcon}>
                 <Icon name={feature.icon} size={20} color="action" />
               </View>
@@ -53,11 +72,11 @@ const Welcome = () => {
                   {feature.caption}
                 </Text>
               </View>
-            </View>
+            </Motion>
           ))}
         </View>
 
-        <View style={styles.actions}>
+        <Motion delay={ACTIONS_DELAY}  preset="pop" style={styles.actions}>
           <Button
             title="CREATE_ACCOUNT"
             suffix={<Icon name="arrowRight" size={18} color="onAction" />}
@@ -68,7 +87,7 @@ const Welcome = () => {
             variant="outlined"
             onPress={() => router.push("/(auth)/login")}
           />
-        </View>
+        </Motion>
       </View>
     </ScreenWrapper>
   );

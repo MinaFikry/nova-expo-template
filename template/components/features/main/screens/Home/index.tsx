@@ -18,6 +18,8 @@ const QUICK_ACTIONS: {
   { icon: "heart", title: "FAVORITES", caption: "HOME_SHORTCUT_FAVORITES_CAPTION", href: "/(main)/(tabs)/favourites" },
   { icon: "user", title: "PROFILE", caption: "HOME_SHORTCUT_PROFILE_CAPTION", href: "/(main)/(tabs)/profile" },
   { icon: "moon", title: "APPEARANCE", caption: "HOME_SHORTCUT_APPEARANCE_CAPTION", href: "/(main)/screen1" },
+  // Temporary entry point for the Motion demo; remove when no longer needed.
+  { icon: "zap", title: "MOTION", caption: "HOME_SHORTCUT_MOTION_CAPTION", href: "/(main)/motion" },
 ];
 
 const Home = () => {
